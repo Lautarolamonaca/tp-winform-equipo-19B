@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CatalogoArticulos
 {
-    internal class Marca
+    public class Marca
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }
@@ -15,6 +15,5 @@ namespace CatalogoArticulos
         {
             return Descripcion;
         }
-
     }
 }

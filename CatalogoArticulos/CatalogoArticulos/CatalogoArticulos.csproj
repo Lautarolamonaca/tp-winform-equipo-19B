@@ -48,12 +48,34 @@
   <ItemGroup>
     <Compile Include="Articulo.cs" />
     <Compile Include="Categoria.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FrmArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmArticulo.Designer.cs" />
+    <Compile Include="FrmCategorias.cs">
+      <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmCategorias.Designer.cs" />
+    <Compile Include="FrmDetalleArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDetalleArticulo.Designer.cs" />
+    <Compile Include="FrmImagenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmImagenes.Designer.cs" />
+    <Compile Include="FrmListadoArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListadoArticulos.Designer.cs" />
+    <Compile Include="FrmMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMarcas.Designer.cs" />
+    <Compile Include="FrmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrincipal.Designer.cs" />
     <Compile Include="Imagen.cs" />
     <Compile Include="Marca.cs" />
     <Compile Include="Program.cs" />
