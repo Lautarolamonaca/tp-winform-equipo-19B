@@ -1,5 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CatalogoArticulos
@@ -20,9 +26,8 @@ namespace CatalogoArticulos
 
         private void CargarCategorias()
         {
-            // Etapa 2: se reemplaza por consulta a BD
-            lstCategorias.DataSource    = null;
-            lstCategorias.DataSource    = _categorias;
+            lstCategorias.DataSource = null;
+            lstCategorias.DataSource = _categorias;
             lstCategorias.DisplayMember = "Descripcion";
         }
 
@@ -35,9 +40,7 @@ namespace CatalogoArticulos
                 txtDescripcion.Focus();
                 return;
             }
-
             Categoria nueva = new Categoria { Descripcion = desc };
-            // Etapa 2: INSERT en BD
             _categorias.Add(nueva);
             txtDescripcion.Clear();
             CargarCategorias();
@@ -62,7 +65,6 @@ namespace CatalogoArticulos
                 MessageBox.Show("Seleccione una categoría e ingrese la descripción.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            // Etapa 2: UPDATE en BD
             seleccionada.Descripcion = txtDescripcion.Text.Trim();
             txtDescripcion.Clear();
             CargarCategorias();
@@ -76,16 +78,11 @@ namespace CatalogoArticulos
                 MessageBox.Show("Seleccione una categoría.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
             DialogResult confirm = MessageBox.Show(
                 $"¿Eliminar la categoría '{seleccionada.Descripcion}'?",
-                "Confirmar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
+                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (confirm == DialogResult.Yes)
             {
-                // Etapa 2: DELETE en BD
                 _categorias.Remove(seleccionada);
                 txtDescripcion.Clear();
                 CargarCategorias();

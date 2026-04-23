@@ -1,4 +1,11 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CatalogoArticulos
@@ -20,19 +27,17 @@ namespace CatalogoArticulos
 
         private void MostrarDatos()
         {
-            lblCodigoVal.Text      = _articulo.Codigo;
-            lblNombreVal.Text      = _articulo.Nombre;
-            lblDescripcionVal.Text = _articulo.Descripcion;
-            lblPrecioVal.Text      = _articulo.Precio.ToString("C2");
-            lblMarcaVal.Text       = _articulo.Marca?.Descripcion ?? "-";
-            lblCategoriaVal.Text   = _articulo.Categoria?.Descripcion ?? "-";
+            lblCodVal.Text = _articulo.Codigo;
+            lblNomVal.Text = _articulo.Nombre;
+            lblDescVal.Text = _articulo.Descripcion;
+            lblPrecVal.Text = _articulo.Precio.ToString("C2");
+            lblMarcVal.Text = _articulo.Marca?.Descripcion ?? "-";
+            lblCatVal.Text = _articulo.Categoria?.Descripcion ?? "-";
 
             lstImagenes.Items.Clear();
             if (_articulo.Imagenes != null)
-            {
                 foreach (var img in _articulo.Imagenes)
                     lstImagenes.Items.Add(img.ImagenUrl);
-            }
 
             if (lstImagenes.Items.Count == 0)
                 lstImagenes.Items.Add("(sin imágenes)");

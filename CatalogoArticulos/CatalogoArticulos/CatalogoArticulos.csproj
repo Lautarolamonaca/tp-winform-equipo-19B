@@ -51,35 +51,70 @@
     <Compile Include="FrmArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmArticulo.Designer.cs" />
+    <Compile Include="FrmArticulo.Designer.cs">
+      <DependentUpon>FrmArticulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCategorias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmCategorias.Designer.cs" />
+    <Compile Include="FrmCategorias.Designer.cs">
+      <DependentUpon>FrmCategorias.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDetalleArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDetalleArticulo.Designer.cs" />
+    <Compile Include="FrmDetalleArticulo.Designer.cs">
+      <DependentUpon>FrmDetalleArticulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmImagenes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmImagenes.Designer.cs" />
+    <Compile Include="FrmImagenes.Designer.cs">
+      <DependentUpon>FrmImagenes.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmListadoArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmListadoArticulos.Designer.cs" />
+    <Compile Include="FrmListadoArticulos.Designer.cs">
+      <DependentUpon>FrmListadoArticulos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMarcas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMarcas.Designer.cs" />
+    <Compile Include="FrmMarcas.Designer.cs">
+      <DependentUpon>FrmMarcas.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPrincipal.Designer.cs" />
+    <Compile Include="FrmPrincipal.Designer.cs">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Imagen.cs" />
     <Compile Include="Marca.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmArticulo.resx">
+      <DependentUpon>FrmArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCategorias.resx">
+      <DependentUpon>FrmCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDetalleArticulo.resx">
+      <DependentUpon>FrmDetalleArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmImagenes.resx">
+      <DependentUpon>FrmImagenes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmListadoArticulos.resx">
+      <DependentUpon>FrmListadoArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMarcas.resx">
+      <DependentUpon>FrmMarcas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

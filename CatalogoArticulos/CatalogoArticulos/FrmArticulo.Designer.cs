@@ -1,144 +1,223 @@
-using System.Drawing;
-using System.Windows.Forms;
-
-namespace CatalogoArticulos
+﻿namespace CatalogoArticulos
 {
     partial class FrmArticulo
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null)) components.Dispose();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent()
         {
-            this.txtCodigo      = new TextBox();
-            this.txtNombre      = new TextBox();
-            this.txtDescripcion = new TextBox();
-            this.txtPrecio      = new TextBox();
-            this.cboMarca       = new ComboBox();
-            this.cboCategoria   = new ComboBox();
-            this.btnGuardar     = new Button();
-            this.btnCancelar    = new Button();
-            this.btnImagenes    = new Button();
-            this.lblCodigo      = new Label();
-            this.lblNombre      = new Label();
-            this.lblDescripcion = new Label();
-            this.lblPrecio      = new Label();
-            this.lblMarca       = new Label();
-            this.lblCategoria   = new Label();
+            this.lblCodigo = new System.Windows.Forms.Label();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.lblDescripcion = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.lblPrecio = new System.Windows.Forms.Label();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.lblMarca = new System.Windows.Forms.Label();
+            this.cboMarca = new System.Windows.Forms.ComboBox();
+            this.lblCategoria = new System.Windows.Forms.Label();
+            this.cboCategoria = new System.Windows.Forms.ComboBox();
+            this.btnImagenes = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
-
-            int labelX  = 20;
-            int inputX  = 130;
-            int inputW  = 280;
-            int rowH    = 35;
-            int startY  = 20;
-
-            // Código
-            this.lblCodigo.Text     = "Código:";
-            this.lblCodigo.Location = new Point(labelX, startY + 4);
-            this.lblCodigo.Size     = new Size(100, 20);
-            this.txtCodigo.Location = new Point(inputX, startY);
-            this.txtCodigo.Size     = new Size(inputW, 24);
-            this.txtCodigo.MaxLength = 50;
-
-            // Nombre
-            this.lblNombre.Text     = "Nombre:";
-            this.lblNombre.Location = new Point(labelX, startY + rowH + 4);
-            this.lblNombre.Size     = new Size(100, 20);
-            this.txtNombre.Location = new Point(inputX, startY + rowH);
-            this.txtNombre.Size     = new Size(inputW, 24);
-            this.txtNombre.MaxLength = 50;
-
-            // Descripción
-            this.lblDescripcion.Text     = "Descripción:";
-            this.lblDescripcion.Location = new Point(labelX, startY + rowH * 2 + 4);
-            this.lblDescripcion.Size     = new Size(100, 20);
-            this.txtDescripcion.Location = new Point(inputX, startY + rowH * 2);
-            this.txtDescripcion.Size     = new Size(inputW, 60);
-            this.txtDescripcion.Multiline    = true;
-            this.txtDescripcion.MaxLength    = 150;
-            this.txtDescripcion.ScrollBars   = ScrollBars.Vertical;
-
-            // Precio
-            this.lblPrecio.Text     = "Precio:";
-            this.lblPrecio.Location = new Point(labelX, startY + rowH * 2 + 70);
-            this.lblPrecio.Size     = new Size(100, 20);
-            this.txtPrecio.Location = new Point(inputX, startY + rowH * 2 + 66);
-            this.txtPrecio.Size     = new Size(140, 24);
-
-            // Marca
-            this.lblMarca.Text     = "Marca:";
-            this.lblMarca.Location = new Point(labelX, startY + rowH * 2 + 105);
-            this.lblMarca.Size     = new Size(100, 20);
-            this.cboMarca.Location = new Point(inputX, startY + rowH * 2 + 101);
-            this.cboMarca.Size     = new Size(inputW, 24);
-            this.cboMarca.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            // Categoría
-            this.lblCategoria.Text     = "Categoría:";
-            this.lblCategoria.Location = new Point(labelX, startY + rowH * 2 + 140);
-            this.lblCategoria.Size     = new Size(100, 20);
-            this.cboCategoria.Location = new Point(inputX, startY + rowH * 2 + 136);
-            this.cboCategoria.Size     = new Size(inputW, 24);
-            this.cboCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            // Botón imágenes
-            this.btnImagenes.Text     = "Gestionar Imágenes...";
-            this.btnImagenes.Location = new Point(inputX, startY + rowH * 2 + 175);
-            this.btnImagenes.Size     = new Size(160, 30);
-            this.btnImagenes.Click   += new System.EventHandler(this.btnImagenes_Click);
-
-            // Botones guardar / cancelar
-            this.btnGuardar.Text     = "Guardar";
-            this.btnGuardar.Location = new Point(inputX, startY + rowH * 2 + 225);
-            this.btnGuardar.Size     = new Size(90, 32);
-            this.btnGuardar.Click   += new System.EventHandler(this.btnGuardar_Click);
-
-            this.btnCancelar.Text     = "Cancelar";
-            this.btnCancelar.Location = new Point(inputX + 100, startY + rowH * 2 + 225);
-            this.btnCancelar.Size     = new Size(90, 32);
-            this.btnCancelar.Click   += new System.EventHandler(this.btnCancelar_Click);
-
-            // Formulario
-            this.ClientSize    = new Size(450, 330);
-            this.Text          = "Artículo";
-            this.StartPosition = FormStartPosition.CenterParent;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.MaximizeBox   = false;
-            this.MinimizeBox   = false;
-            this.Load         += new System.EventHandler(this.FrmArticulo_Load);
-            this.Controls.AddRange(new Control[] {
-                this.lblCodigo,   this.txtCodigo,
-                this.lblNombre,   this.txtNombre,
-                this.lblDescripcion, this.txtDescripcion,
-                this.lblPrecio,   this.txtPrecio,
-                this.lblMarca,    this.cboMarca,
-                this.lblCategoria, this.cboCategoria,
-                this.btnImagenes,
-                this.btnGuardar,  this.btnCancelar
-            });
+            // 
+            // lblCodigo
+            // 
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Location = new System.Drawing.Point(33, 32);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(43, 13);
+            this.lblCodigo.TabIndex = 0;
+            this.lblCodigo.Text = "Código:";
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Location = new System.Drawing.Point(156, 25);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(100, 20);
+            this.txtCodigo.TabIndex = 1;
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(33, 64);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(47, 13);
+            this.lblNombre.TabIndex = 2;
+            this.lblNombre.Text = "Nombre:";
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(156, 57);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtNombre.TabIndex = 3;
+            // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Location = new System.Drawing.Point(33, 94);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(66, 13);
+            this.lblDescripcion.TabIndex = 4;
+            this.lblDescripcion.Text = "Descripción:";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(156, 91);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(100, 20);
+            this.txtDescripcion.TabIndex = 5;
+            // 
+            // lblPrecio
+            // 
+            this.lblPrecio.AutoSize = true;
+            this.lblPrecio.Location = new System.Drawing.Point(33, 130);
+            this.lblPrecio.Name = "lblPrecio";
+            this.lblPrecio.Size = new System.Drawing.Size(40, 13);
+            this.lblPrecio.TabIndex = 6;
+            this.lblPrecio.Text = "Precio:";
+            // 
+            // txtPrecio
+            // 
+            this.txtPrecio.Location = new System.Drawing.Point(156, 123);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(100, 20);
+            this.txtPrecio.TabIndex = 7;
+            // 
+            // lblMarca
+            // 
+            this.lblMarca.AutoSize = true;
+            this.lblMarca.Location = new System.Drawing.Point(33, 165);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(40, 13);
+            this.lblMarca.TabIndex = 8;
+            this.lblMarca.Text = "Marca:";
+            // 
+            // cboMarca
+            // 
+            this.cboMarca.FormattingEnabled = true;
+            this.cboMarca.Location = new System.Drawing.Point(156, 157);
+            this.cboMarca.Name = "cboMarca";
+            this.cboMarca.Size = new System.Drawing.Size(121, 21);
+            this.cboMarca.TabIndex = 9;
+            // 
+            // lblCategoria
+            // 
+            this.lblCategoria.AutoSize = true;
+            this.lblCategoria.Location = new System.Drawing.Point(33, 196);
+            this.lblCategoria.Name = "lblCategoria";
+            this.lblCategoria.Size = new System.Drawing.Size(57, 13);
+            this.lblCategoria.TabIndex = 10;
+            this.lblCategoria.Text = "Categoría:";
+            // 
+            // cboCategoria
+            // 
+            this.cboCategoria.FormattingEnabled = true;
+            this.cboCategoria.Location = new System.Drawing.Point(156, 188);
+            this.cboCategoria.Name = "cboCategoria";
+            this.cboCategoria.Size = new System.Drawing.Size(121, 21);
+            this.cboCategoria.TabIndex = 11;
+            // 
+            // btnImagenes
+            // 
+            this.btnImagenes.Location = new System.Drawing.Point(83, 244);
+            this.btnImagenes.Name = "btnImagenes";
+            this.btnImagenes.Size = new System.Drawing.Size(130, 23);
+            this.btnImagenes.TabIndex = 12;
+            this.btnImagenes.Text = "Gestionar Imágenes";
+            this.btnImagenes.UseVisualStyleBackColor = true;
+            this.btnImagenes.Click += new System.EventHandler(this.btnImagenes_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(110, 282);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 13;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(110, 317);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // FrmArticulo
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 361);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.btnImagenes);
+            this.Controls.Add(this.cboCategoria);
+            this.Controls.Add(this.lblCategoria);
+            this.Controls.Add(this.cboMarca);
+            this.Controls.Add(this.lblMarca);
+            this.Controls.Add(this.txtPrecio);
+            this.Controls.Add(this.lblPrecio);
+            this.Controls.Add(this.txtDescripcion);
+            this.Controls.Add(this.lblDescripcion);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.lblNombre);
+            this.Controls.Add(this.txtCodigo);
+            this.Controls.Add(this.lblCodigo);
+            this.MaximizeBox = false;
+            this.Name = "FrmArticulo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Artículo";
             this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
-        private TextBox  txtCodigo;
-        private TextBox  txtNombre;
-        private TextBox  txtDescripcion;
-        private TextBox  txtPrecio;
-        private ComboBox cboMarca;
-        private ComboBox cboCategoria;
-        private Button   btnGuardar;
-        private Button   btnCancelar;
-        private Button   btnImagenes;
-        private Label    lblCodigo;
-        private Label    lblNombre;
-        private Label    lblDescripcion;
-        private Label    lblPrecio;
-        private Label    lblMarca;
-        private Label    lblCategoria;
+        #endregion
+
+        private System.Windows.Forms.Label lblCodigo;
+        private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.Label lblDescripcion;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.Label lblPrecio;
+        private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.Label lblMarca;
+        private System.Windows.Forms.ComboBox cboMarca;
+        private System.Windows.Forms.Label lblCategoria;
+        private System.Windows.Forms.ComboBox cboCategoria;
+        private System.Windows.Forms.Button btnImagenes;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

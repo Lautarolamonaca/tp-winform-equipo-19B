@@ -1,4 +1,11 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CatalogoArticulos
@@ -23,10 +30,8 @@ namespace CatalogoArticulos
         {
             lstImagenes.Items.Clear();
             if (_articulo.Imagenes != null)
-            {
                 foreach (var img in _articulo.Imagenes)
                     lstImagenes.Items.Add(img);
-            }
             ActualizarTotal();
         }
 
@@ -39,13 +44,7 @@ namespace CatalogoArticulos
                 txtUrl.Focus();
                 return;
             }
-
-            Imagen nueva = new Imagen
-            {
-                IdArticulo = _articulo.Id,
-                ImagenUrl  = url
-            };
-
+            Imagen nueva = new Imagen { IdArticulo = _articulo.Id, ImagenUrl = url };
             _articulo.Imagenes.Add(nueva);
             lstImagenes.Items.Add(nueva);
             txtUrl.Clear();
@@ -55,20 +54,15 @@ namespace CatalogoArticulos
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (lstImagenes.SelectedItem == null)
+            Imagen img = lstImagenes.SelectedItem as Imagen;
+            if (img == null)
             {
                 MessageBox.Show("Seleccione una imagen para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
-            Imagen img = lstImagenes.SelectedItem as Imagen;
             DialogResult confirm = MessageBox.Show(
                 "¿Desea eliminar la imagen seleccionada?",
-                "Confirmar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
+                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
                 _articulo.Imagenes.Remove(img);

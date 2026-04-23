@@ -1,5 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CatalogoArticulos
@@ -9,19 +15,17 @@ namespace CatalogoArticulos
         private Articulo _articulo;
         private bool _esEdicion;
 
-        // Alta
         public FrmArticulo()
         {
             InitializeComponent();
-            _articulo  = new Articulo();
+            _articulo = new Articulo();
             _esEdicion = false;
         }
 
-        // Modificación
         public FrmArticulo(Articulo articulo)
         {
             InitializeComponent();
-            _articulo  = articulo;
+            _articulo = articulo;
             _esEdicion = true;
         }
 
@@ -30,35 +34,30 @@ namespace CatalogoArticulos
             this.Text = _esEdicion ? "Modificar Artículo" : "Nuevo Artículo";
             CargarMarcas();
             CargarCategorias();
-
             if (_esEdicion)
                 CargarDatosEnFormulario();
         }
 
         private void CargarMarcas()
         {
-            // Etapa 2: se reemplaza por consulta a BD
             cboMarca.DisplayMember = "Descripcion";
-            cboMarca.ValueMember   = "Id";
-            cboMarca.DataSource    = new List<Marca>();
+            cboMarca.ValueMember = "Id";
+            cboMarca.DataSource = new List<Marca>();
         }
 
         private void CargarCategorias()
         {
-            // Etapa 2: se reemplaza por consulta a BD
             cboCategoria.DisplayMember = "Descripcion";
-            cboCategoria.ValueMember   = "Id";
-            cboCategoria.DataSource    = new List<Categoria>();
+            cboCategoria.ValueMember = "Id";
+            cboCategoria.DataSource = new List<Categoria>();
         }
 
         private void CargarDatosEnFormulario()
         {
-            txtCodigo.Text      = _articulo.Codigo;
-            txtNombre.Text      = _articulo.Nombre;
+            txtCodigo.Text = _articulo.Codigo;
+            txtNombre.Text = _articulo.Nombre;
             txtDescripcion.Text = _articulo.Descripcion;
-            txtPrecio.Text      = _articulo.Precio.ToString();
-
-            // Seleccionar marca y categoría actuales
+            txtPrecio.Text = _articulo.Precio.ToString();
             if (_articulo.Marca != null)
                 cboMarca.SelectedValue = _articulo.Marca.Id;
             if (_articulo.Categoria != null)
@@ -68,15 +67,12 @@ namespace CatalogoArticulos
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!Validar()) return;
-
-            _articulo.Codigo      = txtCodigo.Text.Trim();
-            _articulo.Nombre      = txtNombre.Text.Trim();
+            _articulo.Codigo = txtCodigo.Text.Trim();
+            _articulo.Nombre = txtNombre.Text.Trim();
             _articulo.Descripcion = txtDescripcion.Text.Trim();
-            _articulo.Precio      = decimal.Parse(txtPrecio.Text.Trim());
-            _articulo.Marca       = cboMarca.SelectedItem as Marca;
-            _articulo.Categoria   = cboCategoria.SelectedItem as Categoria;
-
-            // Etapa 2: persistencia en BD
+            _articulo.Precio = decimal.Parse(txtPrecio.Text.Trim());
+            _articulo.Marca = cboMarca.SelectedItem as Marca;
+            _articulo.Categoria = cboCategoria.SelectedItem as Categoria;
             string accion = _esEdicion ? "modificado" : "guardado";
             MessageBox.Show($"Artículo {accion} correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.DialogResult = DialogResult.OK;
