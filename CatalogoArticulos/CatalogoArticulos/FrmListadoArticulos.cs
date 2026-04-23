@@ -132,5 +132,10 @@ namespace CatalogoArticulos
             int id = Convert.ToInt32(dgvArticulos.SelectedRows[0].Cells["colId"].Value);
             return _articulos.Find(a => a.Id == id);
         }
+
+        private void FrmListadoArticulos_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

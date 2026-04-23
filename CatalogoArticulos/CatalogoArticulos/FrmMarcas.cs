@@ -12,84 +12,116 @@ using System.Windows.Forms;
     {
         public partial class FrmMarcas : Form
         {
-            private List<Marca> _marcas = new List<Marca>();
 
-            public FrmMarcas()
+         private List<Marca> listaMarcas;
+         private Marca seleccionada;
+
+        public FrmMarcas()
             {
                 InitializeComponent();
             }
 
             private void FrmMarcas_Load(object sender, EventArgs e)
-            {
-                CargarMarcas();
+            {      
+
+            CargarMarcas();
             }
 
             private void CargarMarcas()
             {
-                lstMarcas.DataSource = null;
-                lstMarcas.DataSource = _marcas;
-                lstMarcas.DisplayMember = "Descripcion";
+
+            MarcaNegocio negocio = new MarcaNegocio();
+            listaMarcas = negocio.Listar();
+
+            lstMarcas.DataSource = null;
+            lstMarcas.DataSource = listaMarcas;
+
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+            {
+
+            string desc = txtDescripcion.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(desc))
+            {
+                MessageBox.Show("Ingrese una descripción.");
+                return;
             }
 
-            private void btnAgregar_Click(object sender, EventArgs e)
+            Marca nueva = new Marca();
+            nueva.Descripcion = desc;
+
+            MarcaNegocio negocio = new MarcaNegocio();
+            negocio.Agregar(nueva);
+
+            txtDescripcion.Clear();
+            CargarMarcas();
+
+
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
             {
-                string desc = txtDescripcion.Text.Trim();
-                if (string.IsNullOrEmpty(desc))
-                {
-                    MessageBox.Show("Ingrese una descripción.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtDescripcion.Focus();
-                    return;
-                }
-                Marca nueva = new Marca { Descripcion = desc };
-                _marcas.Add(nueva);
-                txtDescripcion.Clear();
+
+            if (lstMarcas.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccione una marca.");
+                return;
+            }
+
+            seleccionada = (Marca)lstMarcas.SelectedItem;
+            txtDescripcion.Text = seleccionada.Descripcion;
+
+        }
+
+        private void btnGuardarEdicion_Click(object sender, EventArgs e)
+            {
+
+            if (seleccionada == null || string.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                MessageBox.Show("Seleccione una marca e ingrese la descripción.");
+                return;
+            }
+
+            seleccionada.Descripcion = txtDescripcion.Text.Trim();
+
+            MarcaNegocio negocio = new MarcaNegocio();
+            negocio.Modificar(seleccionada);
+
+            seleccionada = null;
+            txtDescripcion.Clear();
+            CargarMarcas();
+
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+            {
+
+            if (lstMarcas.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccione una marca.");
+                return;
+            }
+
+            Marca eliminar = (Marca)lstMarcas.SelectedItem;
+
+            DialogResult r = MessageBox.Show(
+                "¿Desea eliminar la marca?",
+                "Confirmar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (r == DialogResult.Yes)
+            {
+                MarcaNegocio negocio = new MarcaNegocio();
+                negocio.Eliminar(eliminar.Id);
                 CargarMarcas();
             }
 
-            private void btnEditar_Click(object sender, EventArgs e)
-            {
-                Marca seleccionada = lstMarcas.SelectedItem as Marca;
-                if (seleccionada == null)
-                {
-                    MessageBox.Show("Seleccione una marca.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-                txtDescripcion.Text = seleccionada.Descripcion;
-            }
+        }
 
-            private void btnGuardarEdicion_Click(object sender, EventArgs e)
-            {
-                Marca seleccionada = lstMarcas.SelectedItem as Marca;
-                if (seleccionada == null || string.IsNullOrWhiteSpace(txtDescripcion.Text))
-                {
-                    MessageBox.Show("Seleccione una marca e ingrese la descripción.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                seleccionada.Descripcion = txtDescripcion.Text.Trim();
-                txtDescripcion.Clear();
-                CargarMarcas();
-            }
-
-            private void btnEliminar_Click(object sender, EventArgs e)
-            {
-                Marca seleccionada = lstMarcas.SelectedItem as Marca;
-                if (seleccionada == null)
-                {
-                    MessageBox.Show("Seleccione una marca.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-                DialogResult confirm = MessageBox.Show(
-                    $"¿Eliminar la marca '{seleccionada.Descripcion}'?",
-                    "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (confirm == DialogResult.Yes)
-                {
-                    _marcas.Remove(seleccionada);
-                    txtDescripcion.Clear();
-                    CargarMarcas();
-                }
-            }
-
-            private void btnCerrar_Click(object sender, EventArgs e)
+        private void btnCerrar_Click(object sender, EventArgs e)
             {
                 this.Close();
             }
