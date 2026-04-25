@@ -4,28 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
+using Accesodatos;
 
-namespace CatalogoArticulos
+namespace Negocio
+
 {
-    internal class ImagenNegocio
+    public class CategoriaNegocio
     {
-        public List<Imagen> Listar()
+        public List<Categoria> Listar()
         {
-            var lista = new List<Imagen>();
-            var _articulo = new Articulo();
+            var lista = new List<Categoria>();
             var datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT Id.I, ImagenUrl.I FROM IMAGENES I, ARTICULOS A WHERE IdArticulo.I = @Id.A");
-                datos.agregarParametro("@Id.A", _articulo.Id);
+                datos.setearConsulta("SELECT Id, Descripcion FROM CATEGORIAS");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    var aux = new Imagen();
+                    var aux = new Categoria();
                     aux.Id = (int)datos.Lector["Id"];
-                    aux.ImagenUrl = (string)datos.Lector["Descripcion"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
 
                     lista.Add(aux);
                 }
@@ -40,17 +40,18 @@ namespace CatalogoArticulos
             {
                 datos.cerrarConexion();
             }
+
         }
 
-        public void Agregar(Imagen nueva)
+
+        public void Agregar(Categoria nueva)
         {
             var datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("INSERT INTO IMAGENES (ImagenUrl, IdArticulo) VALUES (@ImagenUrl, @IdArticulo)");
-                datos.agregarParametro("@ImagenUrl", nueva.ImagenUrl);
-                datos.agregarParametro("@IdArticulo", nueva.IdArticulo);
+                datos.setearConsulta("INSERT INTO CATEGORIAS (Descripcion) VALUES (@descripcion)");
+                datos.agregarParametro("@descripcion", nueva.Descripcion);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -63,15 +64,16 @@ namespace CatalogoArticulos
             }
         }
 
-        public void Modificar(Imagen imagen)
+
+        public void Modificar(Categoria marca)
         {
             var datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE Id = @id");
-                datos.agregarParametro("@ImagenUrl", imagen.ImagenUrl);
-                datos.agregarParametro("@id", imagen.Id);
+                datos.setearConsulta("UPDATE CATEGORIAS SET Descripcion = @descripcion WHERE Id = @id");
+                datos.agregarParametro("@descripcion", marca.Descripcion);
+                datos.agregarParametro("@id", marca.Id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -83,6 +85,7 @@ namespace CatalogoArticulos
                 datos.cerrarConexion();
             }
         }
+
 
         public void Eliminar(int id)
         {
@@ -90,7 +93,7 @@ namespace CatalogoArticulos
 
             try
             {
-                datos.setearConsulta("DELETE FROM IMAGENES WHERE Id = @id");
+                datos.setearConsulta("DELETE FROM CATEGORIAS WHERE Id = @id");
                 datos.agregarParametro("@id", id);
                 datos.ejecutarAccion();
             }
@@ -103,5 +106,7 @@ namespace CatalogoArticulos
                 datos.cerrarConexion();
             }
         }
+
+
     }
 }
