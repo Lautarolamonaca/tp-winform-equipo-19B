@@ -47,12 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
-<<<<<<< HEAD
-=======
-    <Compile Include="Articulo.cs" />
-    <Compile Include="ArticuloNegocio.cs" />
-    <Compile Include="Categoria.cs" />
->>>>>>> 3b4851d38b35a8ff4c40cdfbd0f8d5d3611899a9
     <Compile Include="CategoriaNegocio.cs" />
     <Compile Include="FrmArticulo.cs">
       <SubType>Form</SubType>
