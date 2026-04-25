@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Accesodatos;
+using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dominio;
-using Accesodatos;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Negocio
 {
@@ -42,25 +43,61 @@ namespace Negocio
 
         }
 
-        public void Agregar(Imagen nueva)
+        public List<Imagen> ListarPorArticulo(int idArticulo)
         {
-            var datos = new AccesoDatos();
+            List<Imagen> lista = new List<Imagen>();
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("INSERT INTO IMAGENES (ImagenUrl, IdArticulo) VALUES (@ImagenUrl, @IdArticulo)");
-                datos.agregarParametro("@ImagenUrl", nueva.ImagenUrl);
-                datos.agregarParametro("@IdArticulo", nueva.IdArticulo);
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                datos.setearConsulta(
+                    "SELECT Id, IdArticulo, ImagenUrl " +
+                    "FROM IMAGENES " +
+                    "WHERE IdArticulo = @IdArticulo");
+
+                datos.agregarParametro("@IdArticulo", idArticulo);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Imagen img = new Imagen();
+                    img.Id = (int)datos.Lector["Id"];
+                    img.IdArticulo = (int)datos.Lector["IdArticulo"];
+                    img.ImagenUrl = datos.Lector["ImagenUrl"].ToString();
+
+                    lista.Add(img);
+                }
             }
             finally
             {
                 datos.cerrarConexion();
             }
+
+            return lista;
+        }
+
+
+        public void Agregar(Imagen nueva)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@IdArticulo, @ImagenUrl)"
+                );
+
+                datos.agregarParametro("@IdArticulo", nueva.IdArticulo);
+                datos.agregarParametro("@ImagenUrl", nueva.ImagenUrl);
+
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
         }
 
         public void Modificar(Imagen imagen)

@@ -60,15 +60,16 @@ namespace Negocio
         }
 
      
-        public void Agregar(Articulo nuevo)
+        public int Agregar(Articulo nuevo)
         {
-            AccesoDatos datos = new AccesoDatos();
 
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta(
                     "INSERT INTO ARTICULOS " +
                     "(Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) " +
+                    "OUTPUT INSERTED.Id " +           
                     "VALUES (@Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @Precio)"
                 );
 
@@ -79,15 +80,16 @@ namespace Negocio
                 datos.agregarParametro("@IdCategoria", nuevo.Categoria.Id);
                 datos.agregarParametro("@Precio", nuevo.Precio);
 
-                datos.ejecutarAccion();
+                return datos.ejecutarAccionScalar();  
             }
             finally
             {
                 datos.cerrarConexion();
             }
+
         }
 
-  
+
         public void Modificar(Articulo articulo)
         {
             AccesoDatos datos = new AccesoDatos();

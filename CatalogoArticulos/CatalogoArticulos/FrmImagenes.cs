@@ -15,15 +15,24 @@ namespace CatalogoArticulos
     public partial class FrmImagenes : Form
     {
 
-        private int idArticulo;
+        private int idArticulo ;
         private List<Imagen> listaImagenes;
 
 
+        public FrmImagenes(int idArticulo)
+        {
+
+            InitializeComponent();
+            this.idArticulo = idArticulo;
+
+
+        }
         public FrmImagenes()
         {
 
             InitializeComponent();
-           
+            
+
 
         }
 
@@ -37,12 +46,19 @@ namespace CatalogoArticulos
 
             ImagenNegocio negocio = new ImagenNegocio();
 
-            // ✅ TODAS LAS IMÁGENES
+           
             listaImagenes = negocio.Listar();
 
             lstImagenes.DataSource = null;
             lstImagenes.DataSource = listaImagenes;
             lstImagenes.DisplayMember = "ImagenUrl";
+
+    
+            lstImagenes.DataSource = negocio.ListarPorArticulo(idArticulo);
+         
+
+ 
+
 
             lblTotal.Text = $"Total: {listaImagenes.Count} imagen(es)";
 
@@ -55,15 +71,22 @@ namespace CatalogoArticulos
         private void btnAgregar_Click(object sender, EventArgs e)
         {
 
+            if (string.IsNullOrWhiteSpace(txtUrl.Text))
+            {
+                MessageBox.Show("Ingrese una URL de imagen.");
+                return;
+            }
+
             Imagen img = new Imagen();
-            img.IdArticulo = idArticulo;
             img.ImagenUrl = txtUrl.Text;
+            img.IdArticulo = idArticulo;   // 🔑 ASOCIACIÓN REAL
 
             ImagenNegocio negocio = new ImagenNegocio();
             negocio.Agregar(img);
 
             txtUrl.Clear();
             CargarImagenes();
+
 
         }
 

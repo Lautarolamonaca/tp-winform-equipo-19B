@@ -57,5 +57,14 @@ namespace Accesodatos
                 lector.Close();
             conexion.Close();
         }
+
+        public int ejecutarAccionScalar()
+        {
+            comando.Connection = conexion;
+            conexion.Open();
+            int id = (int)comando.ExecuteScalar();
+            return id;
+        }
+
     }
 }
