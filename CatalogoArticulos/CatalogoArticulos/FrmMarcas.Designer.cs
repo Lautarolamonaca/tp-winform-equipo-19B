@@ -48,7 +48,6 @@
             this.lstMarcas.Name = "lstMarcas";
             this.lstMarcas.Size = new System.Drawing.Size(384, 91);
             this.lstMarcas.TabIndex = 0;
-            this.lstMarcas.SelectedIndexChanged += new System.EventHandler(this.lstMarcas_SelectedIndexChanged);
             // 
             // lblDescripcion
             // 

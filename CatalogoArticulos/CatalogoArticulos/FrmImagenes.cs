@@ -44,7 +44,7 @@ namespace CatalogoArticulos
                 txtUrl.Focus();
                 return;
             }
-            Imagen nueva = new Imagen { IdArticulo = _articulo.Id, ImagenUrl = url };
+            var nueva = new Imagen { IdArticulo = _articulo.Id, ImagenUrl = url };
             _articulo.Imagenes.Add(nueva);
             lstImagenes.Items.Add(nueva);
             txtUrl.Clear();
@@ -54,7 +54,7 @@ namespace CatalogoArticulos
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Imagen img = lstImagenes.SelectedItem as Imagen;
+            var img = lstImagenes.SelectedItem as Imagen;
             if (img == null)
             {
                 MessageBox.Show("Seleccione una imagen para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);

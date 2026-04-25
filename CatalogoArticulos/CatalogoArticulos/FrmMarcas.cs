@@ -8,38 +8,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-    namespace CatalogoArticulos
+namespace CatalogoArticulos
+{
+    public partial class FrmMarcas : Form
     {
-        public partial class FrmMarcas : Form
-        {
 
-         private List<Marca> listaMarcas;
-         private Marca seleccionada;
+        private List<Marca> listaMarcas;
+        private Marca seleccionada;
 
         public FrmMarcas()
-            {
-                InitializeComponent();
-            }
+        {
+            InitializeComponent();
+        }
 
-            private void FrmMarcas_Load(object sender, EventArgs e)
-            {      
-
+        private void FrmMarcas_Load(object sender, EventArgs e)
+        {
             CargarMarcas();
-            }
+        }
 
-            private void CargarMarcas()
-            {
-
-            MarcaNegocio negocio = new MarcaNegocio();
+        private void CargarMarcas()
+        {
+            var negocio = new MarcaNegocio();
             listaMarcas = negocio.Listar();
 
             lstMarcas.DataSource = null;
             lstMarcas.DataSource = listaMarcas;
-
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
-            {
+        {
 
             string desc = txtDescripcion.Text.Trim();
 
@@ -49,10 +46,10 @@ using System.Windows.Forms;
                 return;
             }
 
-            Marca nueva = new Marca();
+            var nueva = new Marca();
             nueva.Descripcion = desc;
 
-            MarcaNegocio negocio = new MarcaNegocio();
+            var negocio = new MarcaNegocio();
             negocio.Agregar(nueva);
 
             txtDescripcion.Clear();
@@ -62,7 +59,7 @@ using System.Windows.Forms;
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
-            {
+        {
 
             if (lstMarcas.SelectedItem == null)
             {
@@ -76,7 +73,7 @@ using System.Windows.Forms;
         }
 
         private void btnGuardarEdicion_Click(object sender, EventArgs e)
-            {
+        {
 
             if (seleccionada == null || string.IsNullOrWhiteSpace(txtDescripcion.Text))
             {
@@ -86,7 +83,7 @@ using System.Windows.Forms;
 
             seleccionada.Descripcion = txtDescripcion.Text.Trim();
 
-            MarcaNegocio negocio = new MarcaNegocio();
+            var negocio = new MarcaNegocio();
             negocio.Modificar(seleccionada);
 
             seleccionada = null;
@@ -96,7 +93,7 @@ using System.Windows.Forms;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
-            {
+        {
 
             if (lstMarcas.SelectedItem == null)
             {
@@ -104,7 +101,7 @@ using System.Windows.Forms;
                 return;
             }
 
-            Marca eliminar = (Marca)lstMarcas.SelectedItem;
+            var eliminar = (Marca)lstMarcas.SelectedItem;
 
             DialogResult r = MessageBox.Show(
                 "¿Desea eliminar la marca?",
@@ -114,7 +111,7 @@ using System.Windows.Forms;
 
             if (r == DialogResult.Yes)
             {
-                MarcaNegocio negocio = new MarcaNegocio();
+                var negocio = new MarcaNegocio();
                 negocio.Eliminar(eliminar.Id);
                 CargarMarcas();
             }
@@ -122,13 +119,8 @@ using System.Windows.Forms;
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
-            {
-                this.Close();
-            }
-
-        private void lstMarcas_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
-    }
+}

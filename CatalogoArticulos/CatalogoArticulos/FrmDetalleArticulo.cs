@@ -47,10 +47,5 @@ namespace CatalogoArticulos
         {
             this.Close();
         }
-
-        private void lstImagenes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

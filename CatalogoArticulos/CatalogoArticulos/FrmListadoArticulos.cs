@@ -68,7 +68,7 @@ namespace CatalogoArticulos
                 return;
             }
 
-            List<Articulo> filtrados = new List<Articulo>();
+            var filtrados = new List<Articulo>();
             foreach (var a in _articulos)
             {
                 bool coincide = false;
@@ -86,31 +86,31 @@ namespace CatalogoArticulos
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            FrmArticulo frm = new FrmArticulo();
+            var frm = new FrmArticulo();
             frm.ShowDialog();
             CargarArticulos();
         }
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado = ObtenerSeleccionado();
+            var seleccionado = ObtenerSeleccionado();
             if (seleccionado == null) return;
-            FrmDetalleArticulo frm = new FrmDetalleArticulo(seleccionado);
+            var frm = new FrmDetalleArticulo(seleccionado);
             frm.ShowDialog();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado = ObtenerSeleccionado();
+            var seleccionado = ObtenerSeleccionado();
             if (seleccionado == null) return;
-            FrmArticulo frm = new FrmArticulo(seleccionado);
+            var frm = new FrmArticulo(seleccionado);
             frm.ShowDialog();
             CargarArticulos();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado = ObtenerSeleccionado();
+            var seleccionado = ObtenerSeleccionado();
             if (seleccionado == null) return;
             DialogResult confirm = MessageBox.Show(
                 $"¿Desea eliminar el artículo '{seleccionado.Nombre}'?",
@@ -131,11 +131,6 @@ namespace CatalogoArticulos
             }
             int id = Convert.ToInt32(dgvArticulos.SelectedRows[0].Cells["colId"].Value);
             return _articulos.Find(a => a.Id == id);
-        }
-
-        private void FrmListadoArticulos_Load_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

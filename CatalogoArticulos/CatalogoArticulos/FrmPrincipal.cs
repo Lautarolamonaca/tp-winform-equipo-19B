@@ -19,19 +19,19 @@ namespace CatalogoArticulos
 
         private void btnArticulos_Click(object sender, EventArgs e)
         {
-            FrmListadoArticulos frm = new FrmListadoArticulos();
+            var frm = new FrmListadoArticulos();
             frm.ShowDialog();
         }
 
         private void btnMarcas_Click(object sender, EventArgs e)
         {
-            FrmMarcas frm = new FrmMarcas();
+            var frm = new FrmMarcas();
             frm.ShowDialog();
         }
 
         private void btnCategorias_Click(object sender, EventArgs e)
         {
-            FrmCategorias frm = new FrmCategorias();
+            var frm = new FrmCategorias();
             frm.ShowDialog();
         }
 

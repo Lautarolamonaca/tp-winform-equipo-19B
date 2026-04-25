@@ -9,8 +9,6 @@ namespace CatalogoArticulos
 {
     internal class AccesoDatos
     {
-
-
         private SqlConnection conexion;
         private SqlCommand comando;
         private SqlDataReader lector;
@@ -59,9 +57,5 @@ namespace CatalogoArticulos
                 lector.Close();
             conexion.Close();
         }
-
-
-
-
     }
 }

@@ -12,9 +12,9 @@ namespace CatalogoArticulos
 {
     public partial class FrmCategorias : Form
     {
-
         private List<Categoria> listarCategoria;
         private bool cargando;
+
         public FrmCategorias()
         {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace CatalogoArticulos
         {
             cargando = true;
 
-            CategoriaNegocio negocio = new CategoriaNegocio();
+            var negocio = new CategoriaNegocio();
             listarCategoria = negocio.Listar();
 
             lstCategorias.DataSource = null;
@@ -37,12 +37,12 @@ namespace CatalogoArticulos
 
             if (lstCategorias.Items.Count > 0)
                 lstCategorias.SelectedIndex = 0;
-                 cargando = false;
+
+            cargando = false;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
             if (lstCategorias.SelectedItem == null)
             {
                 MessageBox.Show("Seleccione una categoría.");
@@ -53,15 +53,9 @@ namespace CatalogoArticulos
             txtDescripcion.Text = lstCategorias.SelectedItem.ToString();
         }
 
-
-
-        
-
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
-
-            Categoria seleccionada = (Categoria)lstCategorias.SelectedItem;
+            var seleccionada = (Categoria)lstCategorias.SelectedItem;
             if (seleccionada == null)
             {
                 MessageBox.Show("Seleccione una categoría.");
@@ -76,7 +70,7 @@ namespace CatalogoArticulos
 
             seleccionada.Descripcion = txtDescripcion.Text.Trim();
 
-            CategoriaNegocio negocio = new CategoriaNegocio();
+            var negocio = new CategoriaNegocio();
             negocio.Modificar(seleccionada);
 
             txtDescripcion.Clear();
@@ -85,7 +79,6 @@ namespace CatalogoArticulos
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
             {
                 MessageBox.Show("Ingrese la descripción.",
@@ -95,10 +88,10 @@ namespace CatalogoArticulos
                 return;
             }
 
-            Categoria nueva = new Categoria();
+            var nueva = new Categoria();
             nueva.Descripcion = txtDescripcion.Text.Trim();
 
-            CategoriaNegocio negocio = new CategoriaNegocio();
+            var negocio = new CategoriaNegocio();
             negocio.Agregar(nueva);
 
             MessageBox.Show("Categoría guardada correctamente.",
@@ -108,12 +101,11 @@ namespace CatalogoArticulos
 
             txtDescripcion.Clear();
             CargarCategorias();
-
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Categoria seleccionada = (Categoria)lstCategorias.SelectedItem;
+            var seleccionada = (Categoria)lstCategorias.SelectedItem;
             if (seleccionada == null)
             {
                 MessageBox.Show("Seleccione una categoría.");
@@ -128,18 +120,15 @@ namespace CatalogoArticulos
 
             if (confirm == DialogResult.Yes)
             {
-                CategoriaNegocio negocio = new CategoriaNegocio();
+                var negocio = new CategoriaNegocio();
                 negocio.Eliminar(seleccionada.Id);
                 CargarCategorias();
             }
-
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-       
     }
 }

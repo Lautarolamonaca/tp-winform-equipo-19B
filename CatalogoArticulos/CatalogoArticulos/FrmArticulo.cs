@@ -87,7 +87,7 @@ namespace CatalogoArticulos
 
         private void btnImagenes_Click(object sender, EventArgs e)
         {
-            FrmImagenes frm = new FrmImagenes(_articulo);
+            var frm = new FrmImagenes(_articulo);
             frm.ShowDialog();
         }
 

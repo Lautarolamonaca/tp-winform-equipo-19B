@@ -13,8 +13,8 @@ namespace CatalogoArticulos
 
         public List<Marca> Listar()
         {
-            List<Marca> lista = new List<Marca>();
-            AccesoDatos datos = new AccesoDatos();
+            var lista = new List<Marca>();
+            var datos = new AccesoDatos();
 
             try
             {
@@ -23,7 +23,7 @@ namespace CatalogoArticulos
 
                 while (datos.Lector.Read())
                 {
-                    Marca aux = new Marca();
+                    var aux = new Marca();
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
 
@@ -46,7 +46,7 @@ namespace CatalogoArticulos
 
         public void Agregar(Marca nueva)
         {
-            AccesoDatos datos = new AccesoDatos();
+            var datos = new AccesoDatos();
 
             try
             {
@@ -67,7 +67,7 @@ namespace CatalogoArticulos
 
         public void Modificar(Marca marca)
         {
-            AccesoDatos datos = new AccesoDatos();
+            var datos = new AccesoDatos();
 
             try
             {
@@ -89,7 +89,7 @@ namespace CatalogoArticulos
 
         public void Eliminar(int id)
         {
-            AccesoDatos datos = new AccesoDatos();
+            var datos = new AccesoDatos();
 
             try
             {
@@ -106,7 +106,5 @@ namespace CatalogoArticulos
                 datos.cerrarConexion();
             }
         }
-
-
     }
 }

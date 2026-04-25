@@ -194,7 +194,6 @@
             this.lstImagenes.Name = "lstImagenes";
             this.lstImagenes.Size = new System.Drawing.Size(159, 116);
             this.lstImagenes.TabIndex = 14;
-            this.lstImagenes.SelectedIndexChanged += new System.EventHandler(this.lstImagenes_SelectedIndexChanged);
             // 
             // btnCerrar
             // 
