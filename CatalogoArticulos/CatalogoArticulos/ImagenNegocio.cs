@@ -16,16 +16,13 @@ namespace CatalogoArticulos
 
             try
             {
-                datos.setearConsulta("SELECT Id.I, ImagenUrl.I FROM IMAGENES I, ARTICULOS A WHERE IdArticulo.I = @Id.A");
-                datos.agregarParametro("@Id.A", _articulo.Id);
+                datos.setearConsulta("SELECT ImagenUrl FROM IMAGENES I, ARTICULOS A WHERE I.IdArticulo = A.Id");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     var aux = new Imagen();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.ImagenUrl = (string)datos.Lector["Descripcion"];
-
+                    aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
                     lista.Add(aux);
                 }
 
@@ -47,9 +44,9 @@ namespace CatalogoArticulos
 
             try
             {
-                datos.setearConsulta("INSERT INTO IMAGENES (ImagenUrl, IdArticulo) VALUES (@ImagenUrl, @IdArticulo)");
-                datos.agregarParametro("@ImagenUrl", nueva.ImagenUrl);
-                datos.agregarParametro("@IdArticulo", nueva.IdArticulo);
+                datos.setearConsulta("INSERT INTO IMAGENES (ImagenUrl, IdArticulo) VALUES (@imagenurl, @idarticulo)");
+                datos.agregarParametro("@imagenurl", nueva.ImagenUrl);
+                datos.agregarParametro("@idarticulo", nueva.IdArticulo);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -68,8 +65,8 @@ namespace CatalogoArticulos
 
             try
             {
-                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE Id = @id");
-                datos.agregarParametro("@ImagenUrl", imagen.ImagenUrl);
+                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @imagenurl WHERE Id = @id");
+                datos.agregarParametro("@imagenurl", imagen.ImagenUrl);
                 datos.agregarParametro("@id", imagen.Id);
                 datos.ejecutarAccion();
             }
