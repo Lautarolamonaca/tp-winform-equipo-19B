@@ -33,6 +33,7 @@
             this.btnMarcas = new System.Windows.Forms.Button();
             this.btnCategorias = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnImagen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -49,7 +50,7 @@
             // btnArticulos
             // 
             this.btnArticulos.Location = new System.Drawing.Point(121, 89);
-            this.btnArticulos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnArticulos.Margin = new System.Windows.Forms.Padding(4);
             this.btnArticulos.Name = "btnArticulos";
             this.btnArticulos.Size = new System.Drawing.Size(267, 55);
             this.btnArticulos.TabIndex = 1;
@@ -60,7 +61,7 @@
             // btnMarcas
             // 
             this.btnMarcas.Location = new System.Drawing.Point(121, 172);
-            this.btnMarcas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMarcas.Margin = new System.Windows.Forms.Padding(4);
             this.btnMarcas.Name = "btnMarcas";
             this.btnMarcas.Size = new System.Drawing.Size(267, 55);
             this.btnMarcas.TabIndex = 2;
@@ -71,7 +72,7 @@
             // btnCategorias
             // 
             this.btnCategorias.Location = new System.Drawing.Point(121, 254);
-            this.btnCategorias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCategorias.Margin = new System.Windows.Forms.Padding(4);
             this.btnCategorias.Name = "btnCategorias";
             this.btnCategorias.Size = new System.Drawing.Size(267, 55);
             this.btnCategorias.TabIndex = 3;
@@ -81,8 +82,8 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(121, 334);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSalir.Location = new System.Drawing.Point(121, 432);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(267, 55);
             this.btnSalir.TabIndex = 4;
@@ -90,17 +91,28 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // btnImagen
+            // 
+            this.btnImagen.Location = new System.Drawing.Point(121, 341);
+            this.btnImagen.Name = "btnImagen";
+            this.btnImagen.Size = new System.Drawing.Size(267, 60);
+            this.btnImagen.TabIndex = 5;
+            this.btnImagen.Text = "Administrar Imagenes";
+            this.btnImagen.UseVisualStyleBackColor = true;
+            this.btnImagen.Click += new System.EventHandler(this.btnImagen_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 420);
+            this.ClientSize = new System.Drawing.Size(512, 500);
+            this.Controls.Add(this.btnImagen);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnCategorias);
             this.Controls.Add(this.btnMarcas);
             this.Controls.Add(this.btnArticulos);
             this.Controls.Add(this.lblTitulo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -117,5 +129,6 @@
         private System.Windows.Forms.Button btnMarcas;
         private System.Windows.Forms.Button btnCategorias;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnImagen;
     }
 }

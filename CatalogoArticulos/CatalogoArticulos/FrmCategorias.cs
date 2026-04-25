@@ -16,7 +16,7 @@ namespace CatalogoArticulos
     public partial class FrmCategorias : Form
     {
         private List<Categoria> listarCategoria;
-        private bool cargando;
+ 
 
         public FrmCategorias()
         {
@@ -30,7 +30,7 @@ namespace CatalogoArticulos
 
         private void CargarCategorias()
         {
-            cargando = true;
+
 
             var negocio = new CategoriaNegocio();
             listarCategoria = negocio.Listar();
@@ -41,7 +41,6 @@ namespace CatalogoArticulos
             if (lstCategorias.Items.Count > 0)
                 lstCategorias.SelectedIndex = 0;
 
-            cargando = false;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

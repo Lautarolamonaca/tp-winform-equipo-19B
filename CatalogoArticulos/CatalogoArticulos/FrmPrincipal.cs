@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -42,6 +43,18 @@ namespace CatalogoArticulos
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnImagen_Click(object sender, EventArgs e)
+        {
+
+            Articulo articuloSeleccionado = new Articulo();
+            articuloSeleccionado.Id = 1; // o el que corresponda
+
+            FrmImagenes frm = new FrmImagenes();
+            frm.ShowDialog();
+
 
         }
     }

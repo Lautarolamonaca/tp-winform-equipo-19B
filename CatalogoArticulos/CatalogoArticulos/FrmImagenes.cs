@@ -14,63 +14,72 @@ namespace CatalogoArticulos
 {
     public partial class FrmImagenes : Form
     {
-        private Articulo _articulo;
 
-        public FrmImagenes(Articulo articulo)
+        private int idArticulo;
+        private List<Imagen> listaImagenes;
+
+
+        public FrmImagenes()
         {
+
             InitializeComponent();
-            _articulo = articulo;
+           
+
         }
 
-        private void FrmImagenes_Load(object sender, EventArgs e)
+        private void FrmImagenes_Load_1(object sender, EventArgs e)
         {
-            lblArticulo.Text = $"Artículo: {_articulo.Nombre}";
             CargarImagenes();
         }
 
         private void CargarImagenes()
         {
-            lstImagenes.Items.Clear();
-            if (_articulo.Imagenes != null)
-                foreach (var img in _articulo.Imagenes)
-                    lstImagenes.Items.Add(img);
-            ActualizarTotal();
+
+            ImagenNegocio negocio = new ImagenNegocio();
+
+            // ✅ TODAS LAS IMÁGENES
+            listaImagenes = negocio.Listar();
+
+            lstImagenes.DataSource = null;
+            lstImagenes.DataSource = listaImagenes;
+            lstImagenes.DisplayMember = "ImagenUrl";
+
+            lblTotal.Text = $"Total: {listaImagenes.Count} imagen(es)";
+
+
         }
+
+
+
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string url = txtUrl.Text.Trim();
-            if (string.IsNullOrEmpty(url))
-            {
-                MessageBox.Show("Ingrese una URL de imagen.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtUrl.Focus();
-                return;
-            }
-            var nueva = new Imagen { IdArticulo = _articulo.Id, ImagenUrl = url };
-            _articulo.Imagenes.Add(nueva);
-            lstImagenes.Items.Add(nueva);
+
+            Imagen img = new Imagen();
+            img.IdArticulo = idArticulo;
+            img.ImagenUrl = txtUrl.Text;
+
+            ImagenNegocio negocio = new ImagenNegocio();
+            negocio.Agregar(img);
+
             txtUrl.Clear();
-            txtUrl.Focus();
-            ActualizarTotal();
+            CargarImagenes();
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            var img = lstImagenes.SelectedItem as Imagen;
-            if (img == null)
-            {
-                MessageBox.Show("Seleccione una imagen para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            if (lstImagenes.SelectedItem == null)
                 return;
-            }
-            DialogResult confirm = MessageBox.Show(
-                "¿Desea eliminar la imagen seleccionada?",
-                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm == DialogResult.Yes)
-            {
-                _articulo.Imagenes.Remove(img);
-                lstImagenes.Items.Remove(img);
-                ActualizarTotal();
-            }
+
+            Imagen seleccionada = (Imagen)lstImagenes.SelectedItem;
+
+            ImagenNegocio negocio = new ImagenNegocio();
+            negocio.Eliminar(seleccionada.Id);
+
+            CargarImagenes();
+
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -83,8 +92,36 @@ namespace CatalogoArticulos
             lblTotal.Text = $"Total: {lstImagenes.Items.Count} imagen(es)";
         }
 
-        private void FrmImagenes_Load_1(object sender, EventArgs e)
+        private void lstImagenes_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+
+            if (lstImagenes.SelectedItem == null)
+                return;
+
+            Imagen img = (Imagen)lstImagenes.SelectedItem;
+
+            if (string.IsNullOrWhiteSpace(img.ImagenUrl))
+            {
+                pictureBox1.Image = null;
+                return;
+            }
+
+            try
+            {
+                pictureBox1.Image = null;
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox1.ImageLocation = img.ImagenUrl;
+                pictureBox1.LoadAsync();
+            }
+            catch
+            {
+                pictureBox1.Image = null;
+            }
+
+
+
+
 
         }
     }

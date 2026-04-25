@@ -164,7 +164,7 @@
             this.btnImagenes.TabIndex = 12;
             this.btnImagenes.Text = "Gestionar Imágenes";
             this.btnImagenes.UseVisualStyleBackColor = true;
-            this.btnImagenes.Click += new System.EventHandler(this.btnImagenes_Click);
+     
             // 
             // btnGuardar
             // 

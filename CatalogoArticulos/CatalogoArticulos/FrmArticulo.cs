@@ -86,12 +86,7 @@ namespace CatalogoArticulos
             this.Close();
         }
 
-        private void btnImagenes_Click(object sender, EventArgs e)
-        {
-            var frm = new FrmImagenes(_articulo);
-            frm.ShowDialog();
-        }
-
+  
         private bool Validar()
         {
             if (string.IsNullOrWhiteSpace(txtCodigo.Text))

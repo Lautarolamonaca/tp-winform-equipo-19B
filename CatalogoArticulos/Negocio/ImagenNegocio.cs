@@ -12,35 +12,34 @@ namespace Negocio
     {
         public List<Imagen> Listar()
         {
-            var lista = new List<Imagen>();
-            var _articulo = new Articulo();
-            var datos = new AccesoDatos();
+
+            List<Imagen> lista = new List<Imagen>();
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT Id.I, ImagenUrl.I FROM IMAGENES I, ARTICULOS A WHERE IdArticulo.I = @Id.A");
-                datos.agregarParametro("@Id.A", _articulo.Id);
+                datos.setearConsulta(
+                    "SELECT Id, IdArticulo, ImagenUrl FROM IMAGENES");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    var aux = new Imagen();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.ImagenUrl = (string)datos.Lector["Descripcion"];
-
-                    lista.Add(aux);
+                    Imagen img = new Imagen();
+                    img.Id = (int)datos.Lector["Id"];
+                    img.IdArticulo = (int)datos.Lector["IdArticulo"];
+                    img.ImagenUrl = datos.Lector["ImagenUrl"].ToString();
+                    lista.Add(img);
                 }
-
-                return lista;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
             finally
             {
                 datos.cerrarConexion();
             }
+
+            return lista;
+
+
+
         }
 
         public void Agregar(Imagen nueva)

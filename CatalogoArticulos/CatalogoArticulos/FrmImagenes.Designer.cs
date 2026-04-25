@@ -36,6 +36,8 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblArticulo
@@ -53,10 +55,11 @@
             this.lstImagenes.FormattingEnabled = true;
             this.lstImagenes.ItemHeight = 16;
             this.lstImagenes.Location = new System.Drawing.Point(104, 59);
-            this.lstImagenes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstImagenes.Margin = new System.Windows.Forms.Padding(4);
             this.lstImagenes.Name = "lstImagenes";
             this.lstImagenes.Size = new System.Drawing.Size(159, 116);
             this.lstImagenes.TabIndex = 1;
+            this.lstImagenes.SelectedIndexChanged += new System.EventHandler(this.lstImagenes_SelectedIndexChanged);
             // 
             // lblTotal
             // 
@@ -81,7 +84,7 @@
             // txtUrl
             // 
             this.txtUrl.Location = new System.Drawing.Point(131, 233);
-            this.txtUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUrl.Margin = new System.Windows.Forms.Padding(4);
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(132, 22);
             this.txtUrl.TabIndex = 4;
@@ -89,7 +92,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Location = new System.Drawing.Point(272, 233);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(100, 28);
             this.btnAgregar.TabIndex = 5;
@@ -100,7 +103,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(104, 289);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(192, 28);
             this.btnEliminar.TabIndex = 6;
@@ -111,7 +114,7 @@
             // btnCerrar
             // 
             this.btnCerrar.Location = new System.Drawing.Point(145, 325);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 28);
             this.btnCerrar.TabIndex = 7;
@@ -119,11 +122,20 @@
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(287, 59);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(177, 123);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmImagenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(405, 398);
+            this.ClientSize = new System.Drawing.Size(524, 409);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAgregar);
@@ -132,12 +144,13 @@
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lstImagenes);
             this.Controls.Add(this.lblArticulo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FrmImagenes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Imágenes de Artículos";
             this.Load += new System.EventHandler(this.FrmImagenes_Load_1);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,5 +166,6 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
