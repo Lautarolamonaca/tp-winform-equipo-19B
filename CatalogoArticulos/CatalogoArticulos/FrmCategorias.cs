@@ -12,81 +12,127 @@ namespace CatalogoArticulos
 {
     public partial class FrmCategorias : Form
     {
-        private List<Categoria> _categorias = new List<Categoria>();
 
+        private List<Categoria> listarCategoria;
+        private bool cargando;
         public FrmCategorias()
         {
             InitializeComponent();
         }
 
-        private void FrmCategorias_Load(object sender, EventArgs e)
+        private void FrmCategorias_Load_1(object sender, EventArgs e)
         {
             CargarCategorias();
         }
 
         private void CargarCategorias()
         {
+            cargando = true;
+
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            listarCategoria = negocio.Listar();
+
             lstCategorias.DataSource = null;
-            lstCategorias.DataSource = _categorias;
-            lstCategorias.DisplayMember = "Descripcion";
+            lstCategorias.DataSource = listarCategoria;
+
+            if (lstCategorias.Items.Count > 0)
+                lstCategorias.SelectedIndex = 0;
+                 cargando = false;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string desc = txtDescripcion.Text.Trim();
-            if (string.IsNullOrEmpty(desc))
+
+            if (lstCategorias.SelectedItem == null)
             {
-                MessageBox.Show("Ingrese una descripción.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtDescripcion.Focus();
+                MessageBox.Show("Seleccione una categoría.");
                 return;
             }
-            Categoria nueva = new Categoria { Descripcion = desc };
-            _categorias.Add(nueva);
-            txtDescripcion.Clear();
-            CargarCategorias();
+
+            // Agrega lo seleccionado del ListBox al TextBox
+            txtDescripcion.Text = lstCategorias.SelectedItem.ToString();
         }
+
+
+
+        
+
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            Categoria seleccionada = lstCategorias.SelectedItem as Categoria;
+
+            Categoria seleccionada = (Categoria)lstCategorias.SelectedItem;
             if (seleccionada == null)
             {
-                MessageBox.Show("Seleccione una categoría.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Seleccione una categoría.");
                 return;
             }
-            txtDescripcion.Text = seleccionada.Descripcion;
-        }
 
-        private void btnGuardarEdicion_Click(object sender, EventArgs e)
-        {
-            Categoria seleccionada = lstCategorias.SelectedItem as Categoria;
-            if (seleccionada == null || string.IsNullOrWhiteSpace(txtDescripcion.Text))
+            if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
             {
-                MessageBox.Show("Seleccione una categoría e ingrese la descripción.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese una descripción.");
                 return;
             }
+
             seleccionada.Descripcion = txtDescripcion.Text.Trim();
+
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            negocio.Modificar(seleccionada);
+
             txtDescripcion.Clear();
             CargarCategorias();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                MessageBox.Show("Ingrese la descripción.",
+                                "Validación",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
+            Categoria nueva = new Categoria();
+            nueva.Descripcion = txtDescripcion.Text.Trim();
+
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            negocio.Agregar(nueva);
+
+            MessageBox.Show("Categoría guardada correctamente.",
+                            "Éxito",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+            txtDescripcion.Clear();
+            CargarCategorias();
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Categoria seleccionada = lstCategorias.SelectedItem as Categoria;
+            Categoria seleccionada = (Categoria)lstCategorias.SelectedItem;
             if (seleccionada == null)
             {
-                MessageBox.Show("Seleccione una categoría.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Seleccione una categoría.");
                 return;
             }
+
             DialogResult confirm = MessageBox.Show(
                 $"¿Eliminar la categoría '{seleccionada.Descripcion}'?",
-                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                "Confirmar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
             if (confirm == DialogResult.Yes)
             {
-                _categorias.Remove(seleccionada);
-                txtDescripcion.Clear();
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                negocio.Eliminar(seleccionada.Id);
                 CargarCategorias();
             }
+
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -94,9 +140,6 @@ namespace CatalogoArticulos
             this.Close();
         }
 
-        private void FrmCategorias_Load_1(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
