@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Dominio;
 namespace CatalogoArticulos
 {
     public partial class FrmArticulo : Form
@@ -124,6 +124,11 @@ namespace CatalogoArticulos
                 return false;
             }
             return true;
+        }
+
+        private void FrmArticulo_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

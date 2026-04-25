@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
 
 namespace CatalogoArticulos
 {
@@ -131,6 +132,11 @@ namespace CatalogoArticulos
             }
             int id = Convert.ToInt32(dgvArticulos.SelectedRows[0].Cells["colId"].Value);
             return _articulos.Find(a => a.Id == id);
+        }
+
+        private void FrmListadoArticulos_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
