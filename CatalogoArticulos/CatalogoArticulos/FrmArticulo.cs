@@ -73,7 +73,7 @@ namespace CatalogoArticulos
                 return;
             }
 
-            // 4. Validar que el precio sea un número (Evita error en línea 80)
+            // 4. Validar que el precio sea un número 
             if (!decimal.TryParse(txtPrecio.Text, out decimal precio))
             {
                 MessageBox.Show("El precio debe ser un número válido.");
