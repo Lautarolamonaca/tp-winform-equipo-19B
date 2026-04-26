@@ -42,8 +42,9 @@
             this.lblPrecVal = new System.Windows.Forms.Label();
             this.lblMarcVal = new System.Windows.Forms.Label();
             this.lblCatVal = new System.Windows.Forms.Label();
-            this.lstImagenes = new System.Windows.Forms.ListBox();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.pbimagen = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbimagen)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -185,20 +186,10 @@
             this.lblCatVal.TabIndex = 13;
             this.lblCatVal.Text = "label12";
             // 
-            // lstImagenes
-            // 
-            this.lstImagenes.FormattingEnabled = true;
-            this.lstImagenes.ItemHeight = 16;
-            this.lstImagenes.Location = new System.Drawing.Point(40, 283);
-            this.lstImagenes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.lstImagenes.Name = "lstImagenes";
-            this.lstImagenes.Size = new System.Drawing.Size(159, 116);
-            this.lstImagenes.TabIndex = 14;
-            // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(151, 407);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCerrar.Location = new System.Drawing.Point(110, 429);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 28);
             this.btnCerrar.TabIndex = 15;
@@ -206,13 +197,22 @@
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // pbimagen
+            // 
+            this.pbimagen.Location = new System.Drawing.Point(39, 284);
+            this.pbimagen.Name = "pbimagen";
+            this.pbimagen.Size = new System.Drawing.Size(243, 116);
+            this.pbimagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbimagen.TabIndex = 16;
+            this.pbimagen.TabStop = false;
+            // 
             // FrmDetalleArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 444);
+            this.ClientSize = new System.Drawing.Size(393, 470);
+            this.Controls.Add(this.pbimagen);
             this.Controls.Add(this.btnCerrar);
-            this.Controls.Add(this.lstImagenes);
             this.Controls.Add(this.lblCatVal);
             this.Controls.Add(this.lblMarcVal);
             this.Controls.Add(this.lblPrecVal);
@@ -227,12 +227,13 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FrmDetalleArticulo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Detalle del Articulo";
             this.Load += new System.EventHandler(this.FrmDetalleArticulo_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbimagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,7 +255,7 @@
         private System.Windows.Forms.Label lblPrecVal;
         private System.Windows.Forms.Label lblMarcVal;
         private System.Windows.Forms.Label lblCatVal;
-        private System.Windows.Forms.ListBox lstImagenes;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.PictureBox pbimagen;
     }
 }

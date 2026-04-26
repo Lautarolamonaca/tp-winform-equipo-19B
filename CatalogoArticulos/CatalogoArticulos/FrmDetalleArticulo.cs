@@ -22,13 +22,22 @@ namespace CatalogoArticulos
             _articulo = articulo;
         }
 
+
         private void FrmDetalleArticulo_Load(object sender, EventArgs e)
         {
             MostrarDatos();
+       
+
+
+
+
+
+
         }
 
         private void MostrarDatos()
         {
+
             lblCodVal.Text = _articulo.Codigo;
             lblNomVal.Text = _articulo.Nombre;
             lblDescVal.Text = _articulo.Descripcion;
@@ -36,18 +45,42 @@ namespace CatalogoArticulos
             lblMarcVal.Text = _articulo.Marca?.Descripcion ?? "-";
             lblCatVal.Text = _articulo.Categoria?.Descripcion ?? "-";
 
-            lstImagenes.Items.Clear();
-            if (_articulo.Imagenes != null)
-                foreach (var img in _articulo.Imagenes)
-                    lstImagenes.Items.Add(img.ImagenUrl);
+            // Cargar imagen en el PictureBox
+            if (_articulo.Imagenes != null && _articulo.Imagenes.Count > 0)
+            {
+                CargarImagen(_articulo.Imagenes[0].ImagenUrl);
+            }
+            else
+            {
+                CargarImagen(null);
+            }
 
-            if (lstImagenes.Items.Count == 0)
-                lstImagenes.Items.Add("(sin imágenes)");
+        }
+
+        private void CargarImagen(string url)
+        {
+
+
+            try
+            {
+                if (!string.IsNullOrEmpty(url))
+                    pbimagen.Load(url);
+                else
+                    pbimagen.Load("https://via.placeholder.com/300");
+            }
+            catch
+            {
+                pbimagen.Load("https://via.placeholder.com/300");
+            }
+
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+       
+
     }
 }

@@ -57,7 +57,7 @@ namespace CatalogoArticulos
             //lstImagenes.DataSource = negocio.ListarPorArticulo(idArticulo);
          
             
-            //lblTotal.Text = $"Total: {listaImagenes.Count} imagen(es)";
+            lblTotal.Text = $"Total: {listaImagenes.Count} imagen(es)";
 
 
         }
@@ -76,7 +76,7 @@ namespace CatalogoArticulos
 
             Imagen img = new Imagen();
             img.ImagenUrl = txtUrl.Text;
-            img.IdArticulo = idArticulo;   // 🔑 ASOCIACIÓN REAL
+            img.IdArticulo = idArticulo;   
 
             ImagenNegocio negocio = new ImagenNegocio();
             negocio.Agregar(img);
@@ -97,6 +97,7 @@ namespace CatalogoArticulos
 
             ImagenNegocio negocio = new ImagenNegocio();
             negocio.Eliminar(seleccionada.Id);
+            ActualizarTotal();
 
             CargarImagenes();
 
@@ -115,7 +116,7 @@ namespace CatalogoArticulos
         private void lstImagenes_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-
+            string placeholderUrl = "https://placehold.co/300x200?text=Sin+imagen";
             if (lstImagenes.SelectedItem == null)
                 return;
 
@@ -136,12 +137,18 @@ namespace CatalogoArticulos
             }
             catch
             {
-                pictureBox1.Image = null;
+               
+                pictureBox1.ImageLocation = placeholderUrl;
             }
 
 
 
 
+
+        }
+
+        private void lblArticulo_Click(object sender, EventArgs e)
+        {
 
         }
     }

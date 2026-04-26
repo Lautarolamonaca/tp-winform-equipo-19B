@@ -46,9 +46,10 @@
             this.lblArticulo.Location = new System.Drawing.Point(160, 23);
             this.lblArticulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblArticulo.Name = "lblArticulo";
-            this.lblArticulo.Size = new System.Drawing.Size(44, 16);
+            this.lblArticulo.Size = new System.Drawing.Size(129, 16);
             this.lblArticulo.TabIndex = 0;
-            this.lblArticulo.Text = "label1";
+            this.lblArticulo.Text = "IMAGEN ARTICULO";
+            this.lblArticulo.Click += new System.EventHandler(this.lblArticulo_Click);
             // 
             // lstImagenes
             // 
