@@ -73,6 +73,12 @@ namespace CatalogoArticulos
                 MessageBox.Show("Ingrese una URL de imagen.");
                 return;
             }
+            // 3. Validar el largo de la URL (el problema de la imagen gigante)
+            if (txtUrl.Text.Length > 1000) 
+            {
+                MessageBox.Show("El texto es demasiado largo para la base de datos.");
+                return;
+            }
 
             Imagen img = new Imagen();
             img.ImagenUrl = txtUrl.Text;

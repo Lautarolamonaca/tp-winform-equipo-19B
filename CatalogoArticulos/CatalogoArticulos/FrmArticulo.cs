@@ -59,6 +59,26 @@ namespace CatalogoArticulos
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            // 1. Validar campos vacíos
+            if (string.IsNullOrEmpty(txtCodigo.Text) || string.IsNullOrEmpty(txtNombre.Text))
+            {
+                MessageBox.Show("El Código y el Nombre son obligatorios.");
+                return; // Sale del método y no guarda
+            }
+
+            // 2. Validar selección de Marca y Categoría
+            if (cboMarca.SelectedItem == null || cboCategoria.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, seleccione una Marca y una Categoría.");
+                return;
+            }
+
+            // 4. Validar que el precio sea un número (Evita error en línea 80)
+            if (!decimal.TryParse(txtPrecio.Text, out decimal precio))
+            {
+                MessageBox.Show("El precio debe ser un número válido.");
+                return;
+            }
 
             if (!Validar())
                 return;

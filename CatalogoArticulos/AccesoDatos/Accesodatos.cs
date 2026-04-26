@@ -21,7 +21,7 @@ namespace Accesodatos
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("Server=localhost,1433;Database=CATALOGO_P3_DB;User Id=sa;Password=Maycol-123456;TrustServerCertificate=True");
+            conexion = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=CATALOGO_P3_DB;Trusted_Connection=True");
             comando = new SqlCommand();
         }
 
