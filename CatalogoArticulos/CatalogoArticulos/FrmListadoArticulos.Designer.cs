@@ -38,7 +38,9 @@
             this.btnVer = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.pbImagenArticulo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagenArticulo)).BeginInit();
             this.SuspendLayout();
             // 
             // lblBuscar
@@ -53,6 +55,7 @@
             // 
             // cboCriterio
             // 
+            this.cboCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCriterio.FormattingEnabled = true;
             this.cboCriterio.Location = new System.Drawing.Point(105, 15);
             this.cboCriterio.Margin = new System.Windows.Forms.Padding(4);
@@ -83,8 +86,8 @@
             // dgvArticulos
             // 
             this.dgvArticulos.AllowUserToAddRows = false;
-            this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvArticulos.Location = new System.Drawing.Point(20, 84);
+            this.dgvArticulos.ColumnHeadersHeight = 29;
+            this.dgvArticulos.Location = new System.Drawing.Point(13, 84);
             this.dgvArticulos.Margin = new System.Windows.Forms.Padding(4);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
@@ -92,13 +95,14 @@
             this.dgvArticulos.RowHeadersVisible = false;
             this.dgvArticulos.RowHeadersWidth = 51;
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulos.Size = new System.Drawing.Size(654, 283);
+            this.dgvArticulos.Size = new System.Drawing.Size(870, 283);
             this.dgvArticulos.TabIndex = 4;
+            this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(533, 380);
+            this.lblTotal.Location = new System.Drawing.Point(752, 400);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(112, 16);
@@ -107,7 +111,7 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(54, 417);
+            this.btnNuevo.Location = new System.Drawing.Point(75, 394);
             this.btnNuevo.Margin = new System.Windows.Forms.Padding(4);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(100, 28);
@@ -118,7 +122,7 @@
             // 
             // btnVer
             // 
-            this.btnVer.Location = new System.Drawing.Point(219, 416);
+            this.btnVer.Location = new System.Drawing.Point(247, 394);
             this.btnVer.Margin = new System.Windows.Forms.Padding(4);
             this.btnVer.Name = "btnVer";
             this.btnVer.Size = new System.Drawing.Size(100, 28);
@@ -129,7 +133,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(391, 416);
+            this.btnEditar.Location = new System.Drawing.Point(416, 394);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(100, 28);
@@ -140,7 +144,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(566, 415);
+            this.btnEliminar.Location = new System.Drawing.Point(590, 394);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 28);
@@ -149,11 +153,21 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // pbImagenArticulo
+            // 
+            this.pbImagenArticulo.Location = new System.Drawing.Point(907, 84);
+            this.pbImagenArticulo.Name = "pbImagenArticulo";
+            this.pbImagenArticulo.Size = new System.Drawing.Size(327, 283);
+            this.pbImagenArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagenArticulo.TabIndex = 10;
+            this.pbImagenArticulo.TabStop = false;
+            // 
             // FrmListadoArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 481);
+            this.ClientSize = new System.Drawing.Size(1246, 501);
+            this.Controls.Add(this.pbImagenArticulo);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnVer);
@@ -170,6 +184,7 @@
             this.Text = "Listado de Artículos";
             this.Load += new System.EventHandler(this.FrmListadoArticulos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagenArticulo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +202,6 @@
         private System.Windows.Forms.Button btnVer;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.PictureBox pbImagenArticulo;
     }
 }

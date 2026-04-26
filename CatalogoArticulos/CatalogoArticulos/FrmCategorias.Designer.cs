@@ -41,7 +41,7 @@
             // btnCerrar
             // 
             this.btnCerrar.Location = new System.Drawing.Point(168, 383);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 28);
             this.btnCerrar.TabIndex = 15;
@@ -52,7 +52,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(168, 335);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 28);
             this.btnEliminar.TabIndex = 14;
@@ -63,7 +63,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Location = new System.Drawing.Point(168, 288);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 28);
             this.btnGuardar.TabIndex = 13;
@@ -74,7 +74,7 @@
             // btnEditar
             // 
             this.btnEditar.Location = new System.Drawing.Point(168, 241);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(100, 28);
             this.btnEditar.TabIndex = 12;
@@ -85,7 +85,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Location = new System.Drawing.Point(168, 193);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(100, 28);
             this.btnAgregar.TabIndex = 11;
@@ -96,7 +96,7 @@
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(151, 153);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(132, 22);
             this.txtDescripcion.TabIndex = 10;
@@ -116,8 +116,8 @@
             this.lstCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstCategorias.FormattingEnabled = true;
             this.lstCategorias.ItemHeight = 29;
-            this.lstCategorias.Location = new System.Drawing.Point(-3, 33);
-            this.lstCategorias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstCategorias.Location = new System.Drawing.Point(13, 33);
+            this.lstCategorias.Margin = new System.Windows.Forms.Padding(4);
             this.lstCategorias.Name = "lstCategorias";
             this.lstCategorias.Size = new System.Drawing.Size(401, 91);
             this.lstCategorias.TabIndex = 8;
@@ -135,7 +135,7 @@
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lstCategorias);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FrmCategorias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

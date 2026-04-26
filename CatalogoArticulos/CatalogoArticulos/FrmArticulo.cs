@@ -29,16 +29,7 @@ namespace CatalogoArticulos
             this.articulo = articulo;
         }
 
-
-        private void FrmArticulo_Load(object sender, EventArgs e)
-        {
-
-
-
-        }
-
-
-
+             
         private void CargarMarcas()
         {
             cboMarca.DisplayMember = "Descripcion";
@@ -69,6 +60,9 @@ namespace CatalogoArticulos
         private void btnGuardar_Click(object sender, EventArgs e)
         {
 
+            if (!Validar())
+                return;
+
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             if (articulo == null)
@@ -84,7 +78,7 @@ namespace CatalogoArticulos
 
             if (articulo.Id == 0)
             {
-                articulo.Id = negocio.Agregar(articulo); // 🔑 CLAVE
+                articulo.Id = negocio.Agregar(articulo); 
             }
             else
             {
@@ -92,6 +86,7 @@ namespace CatalogoArticulos
             }
 
             MessageBox.Show("Artículo guardado correctamente.");
+    
 
         }
 
@@ -152,11 +147,7 @@ namespace CatalogoArticulos
 
             FrmImagenes frm = new FrmImagenes(articulo.Id);
             frm.ShowDialog();
-           
-
-
-
-
+            LimpiarFormulario();
 
         }
 

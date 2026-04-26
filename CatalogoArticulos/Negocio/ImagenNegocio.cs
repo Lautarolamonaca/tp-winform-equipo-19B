@@ -15,7 +15,7 @@ namespace Negocio
         {
 
             List<Imagen> lista = new List<Imagen>();
-            AccesoDatos datos = new AccesoDatos();
+             AccesoDatos datos = new AccesoDatos();
 
             try
             {
@@ -31,13 +31,14 @@ namespace Negocio
                     img.ImagenUrl = datos.Lector["ImagenUrl"].ToString();
                     lista.Add(img);
                 }
+                return lista;
             }
             finally
             {
                 datos.cerrarConexion();
             }
 
-            return lista;
+         
 
 
 
@@ -99,6 +100,25 @@ namespace Negocio
             }
 
         }
+
+        public void EliminarPorArticulo(int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "DELETE FROM IMAGENES WHERE IdArticulo = @IdArticulo"
+                );
+                datos.agregarParametro("@IdArticulo", idArticulo);
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
         public void Modificar(Imagen imagen)
         {

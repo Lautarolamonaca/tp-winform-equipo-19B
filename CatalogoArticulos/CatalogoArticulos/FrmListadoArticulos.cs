@@ -25,7 +25,14 @@ namespace CatalogoArticulos
             dgvArticulos.AutoGenerateColumns = true;
 
             ArticuloNegocio negocio = new ArticuloNegocio();
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+
             lista = negocio.Listar();
+
+            foreach (Articulo art in lista)
+            {
+                art.Imagenes = imagenNegocio.ListarPorArticulo(art.Id);
+            }
 
             dgvArticulos.DataSource = lista;
             lblTotal.Text = $"Total: {lista.Count} artículo(s)";
@@ -36,22 +43,48 @@ namespace CatalogoArticulos
             cboCriterio.Items.Add("Marca");
             cboCriterio.Items.Add("Categoría");
 
+
+        }
+
+        private void CargarImagen(Articulo articulo)
+        {
+            try
+            {
+                if (articulo.Imagenes != null && articulo.Imagenes.Count > 0)
+                    pbImagenArticulo.Load(articulo.Imagenes[0].ImagenUrl);
+                else
+                
+                pbImagenArticulo.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUwCJYSnbBLMEGWKfSnWRGC_34iCCKkxePpg&s");
+            }
+            catch
+            {
+                pbImagenArticulo.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUwCJYSnbBLMEGWKfSnWRGC_34iCCKkxePpg&s");
+            }
         }
 
 
-        // ✅ Carga general del listado
+
         private void CargarArticulos()
         {
+
             ArticuloNegocio negocio = new ArticuloNegocio();
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+
             lista = negocio.Listar();
+
+            foreach (Articulo art in lista)
+            {
+                art.Imagenes = imagenNegocio.ListarPorArticulo(art.Id);
+            }
 
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = lista;
 
             lblTotal.Text = $"Total: {lista.Count} artículo(s)";
+
         }
 
- 
+
         private Articulo ObtenerSeleccionado()
         {
             if (dgvArticulos.CurrentRow == null)
@@ -153,21 +186,47 @@ namespace CatalogoArticulos
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+
             Articulo seleccionado = ObtenerSeleccionado();
-            if (seleccionado == null) return;
+            if (seleccionado == null)
+                return;
 
             DialogResult confirm = MessageBox.Show(
-                $"¿Desea eliminar el artículo '{seleccionado.Nombre}'?",
+                $"¿Desea eliminar el artículo '{seleccionado.Nombre}'?\n" +
+                "También se eliminarán sus imágenes asociadas.",
                 "Confirmar eliminación",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
 
             if (confirm == DialogResult.Yes)
             {
-                ArticuloNegocio negocio = new ArticuloNegocio();
-                negocio.Eliminar(seleccionado.Id);
+                ImagenNegocio imagenNegocio = new ImagenNegocio();
+                ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+
+                // 1️⃣ eliminar imágenes
+                imagenNegocio.EliminarPorArticulo(seleccionado.Id);
+
+                // 2️⃣ eliminar artículo
+                articuloNegocio.Eliminar(seleccionado.Id);
+
+                // 3️⃣ refrescar listado
                 CargarArticulos();
+
+                // 4️⃣ limpiar PictureBox (si lo usás)
+                pbImagenArticulo.Image = null;
             }
+
+        }
+
+        private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
+        {
+
+            Articulo seleccionado = ObtenerSeleccionado();
+            if (seleccionado == null)
+                return;
+
+            CargarImagen(seleccionado);
+
         }
     }
 }

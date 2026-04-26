@@ -33,7 +33,6 @@
             this.btnMarcas = new System.Windows.Forms.Button();
             this.btnCategorias = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.btnImagen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -82,7 +81,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(121, 432);
+            this.btnSalir.Location = new System.Drawing.Point(121, 356);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(267, 55);
@@ -91,22 +90,11 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // btnImagen
-            // 
-            this.btnImagen.Location = new System.Drawing.Point(121, 341);
-            this.btnImagen.Name = "btnImagen";
-            this.btnImagen.Size = new System.Drawing.Size(267, 60);
-            this.btnImagen.TabIndex = 5;
-            this.btnImagen.Text = "Administrar Imagenes";
-            this.btnImagen.UseVisualStyleBackColor = true;
-            this.btnImagen.Click += new System.EventHandler(this.btnImagen_Click);
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 500);
-            this.Controls.Add(this.btnImagen);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnCategorias);
             this.Controls.Add(this.btnMarcas);
@@ -129,6 +117,5 @@
         private System.Windows.Forms.Button btnMarcas;
         private System.Windows.Forms.Button btnCategorias;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Button btnImagen;
     }
 }

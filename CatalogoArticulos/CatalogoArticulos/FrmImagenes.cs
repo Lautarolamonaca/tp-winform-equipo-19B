@@ -45,22 +45,19 @@ namespace CatalogoArticulos
         {
 
             ImagenNegocio negocio = new ImagenNegocio();
-
+            lstImagenes.DataSource = negocio.Listar();
            
-            listaImagenes = negocio.Listar();
+            //listaImagenes = negocio.Listar();
 
-            lstImagenes.DataSource = null;
-            lstImagenes.DataSource = listaImagenes;
-            lstImagenes.DisplayMember = "ImagenUrl";
+            //lstImagenes.DataSource = null;
+            //lstImagenes.DataSource = listaImagenes;
+            //lstImagenes.DisplayMember = "ImagenUrl";
 
     
-            lstImagenes.DataSource = negocio.ListarPorArticulo(idArticulo);
+            //lstImagenes.DataSource = negocio.ListarPorArticulo(idArticulo);
          
-
- 
-
-
-            lblTotal.Text = $"Total: {listaImagenes.Count} imagen(es)";
+            
+            //lblTotal.Text = $"Total: {listaImagenes.Count} imagen(es)";
 
 
         }
