@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dominio;
-using Negocio;
 
 namespace CatalogoArticulos
 {
@@ -16,7 +17,9 @@ namespace CatalogoArticulos
     {
 
         private int idArticulo ;
-        private List<Imagen> listaImagenes;
+        private List<Imagen> listaImagenes= new List<Imagen>();
+       
+
 
 
         public FrmImagenes(int idArticulo)
@@ -52,18 +55,12 @@ namespace CatalogoArticulos
             //lstImagenes.DataSource = null;
             //lstImagenes.DataSource = listaImagenes;
             //lstImagenes.DisplayMember = "ImagenUrl";
-
-    
-            //lstImagenes.DataSource = negocio.ListarPorArticulo(idArticulo);
-         
-            
+                
+            lstImagenes.DataSource = negocio.ListarPorArticulo(idArticulo);
+                    
             lblTotal.Text = $"Total: {listaImagenes.Count} imagen(es)";
-
-
+                                 
         }
-
-
-
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -122,15 +119,16 @@ namespace CatalogoArticulos
         private void lstImagenes_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            string placeholderUrl = "https://placehold.co/300x200?text=Sin+imagen";
+
             if (lstImagenes.SelectedItem == null)
                 return;
 
             Imagen img = (Imagen)lstImagenes.SelectedItem;
 
+            // Validar URL
             if (string.IsNullOrWhiteSpace(img.ImagenUrl))
             {
-                pictureBox1.Image = null;
+                pictureBox1.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJQeJyzgAzTEVqXiGe90RGBFhfp_4RcJJMQ&s");
                 return;
             }
 
@@ -138,21 +136,15 @@ namespace CatalogoArticulos
             {
                 pictureBox1.Image = null;
                 pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox1.ImageLocation = img.ImagenUrl;
-                pictureBox1.LoadAsync();
+                pictureBox1.Load(img.ImagenUrl); // UNA sola carga
             }
             catch
             {
-               
-                pictureBox1.ImageLocation = placeholderUrl;
+                pictureBox1.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJQeJyzgAzTEVqXiGe90RGBFhfp_4RcJJMQ&s");
+
+
             }
-
-
-
-
-
-        }
-
+        }  
         private void lblArticulo_Click(object sender, EventArgs e)
         {
 

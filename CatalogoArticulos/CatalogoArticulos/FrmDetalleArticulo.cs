@@ -27,13 +27,7 @@ namespace CatalogoArticulos
         {
             MostrarDatos();
        
-
-
-
-
-
-
-        }
+                    }
 
         private void MostrarDatos()
         {
@@ -66,11 +60,11 @@ namespace CatalogoArticulos
                 if (!string.IsNullOrEmpty(url))
                     pbimagen.Load(url);
                 else
-                    pbimagen.Load("https://via.placeholder.com/300");
+                    pbimagen.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJQeJyzgAzTEVqXiGe90RGBFhfp_4RcJJMQ&s");
             }
             catch
             {
-                pbimagen.Load("https://via.placeholder.com/300");
+                pbimagen.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJQeJyzgAzTEVqXiGe90RGBFhfp_4RcJJMQ&s");
             }
 
         }
