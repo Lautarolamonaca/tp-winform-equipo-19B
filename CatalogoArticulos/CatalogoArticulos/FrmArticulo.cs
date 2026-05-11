@@ -19,7 +19,6 @@ namespace CatalogoArticulos
         public FrmArticulo()
         {
             InitializeComponent();
-         
         }
 
 
@@ -59,31 +58,11 @@ namespace CatalogoArticulos
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            // 1. Validar campos vacíos
-            if (string.IsNullOrEmpty(txtCodigo.Text) || string.IsNullOrEmpty(txtNombre.Text))
-            {
-                MessageBox.Show("El Código y el Nombre son obligatorios.");
-                return; // Sale del método y no guarda
-            }
-
-            // 2. Validar selección de Marca y Categoría
-            if (cboMarca.SelectedItem == null || cboCategoria.SelectedItem == null)
-            {
-                MessageBox.Show("Por favor, seleccione una Marca y una Categoría.");
-                return;
-            }
-
-            // 4. Validar que el precio sea un número 
-            if (!decimal.TryParse(txtPrecio.Text, out decimal precio))
-            {
-                MessageBox.Show("El precio debe ser un número válido.");
-                return;
-            }
-
-            if (!Validar())
-                return;
-
             ArticuloNegocio negocio = new ArticuloNegocio();
+
+            if (!Validar(negocio))
+                return; // Si no pasa alguna validación termina el método acá y no guarda nada.
+
 
             if (articulo == null)
                 articulo = new Articulo();
@@ -106,8 +85,13 @@ namespace CatalogoArticulos
             }
 
             MessageBox.Show("Artículo guardado correctamente.");
-    
 
+            txtCodigo.Text = string.Empty;
+            txtNombre.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
+            txtPrecio.Text = string.Empty;
+            cboMarca.SelectedItem = null;
+            cboCategoria.SelectedItem = null;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -117,7 +101,7 @@ namespace CatalogoArticulos
         }
 
   
-        private bool Validar()
+        private bool Validar(ArticuloNegocio negocio)
         {
             if (string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
@@ -149,6 +133,15 @@ namespace CatalogoArticulos
                 cboCategoria.Focus();
                 return false;
             }
+            foreach (Articulo a in negocio.Listar())
+            {
+                if (txtCodigo.Text == a.Codigo)
+                {
+                    MessageBox.Show("El Código ya existe, intente otro...");
+                    return false;
+                }
+            }
+
             return true;
         }
 
