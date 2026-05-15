@@ -113,11 +113,18 @@ namespace CatalogoArticulos
 
             if (r == DialogResult.Yes)
             {
-                var negocio = new MarcaNegocio();
-                negocio.Eliminar(eliminar.Id);
-                CargarMarcas();
+                try
+                {
+                    var negocio = new MarcaNegocio();
+                    negocio.Eliminar(eliminar.Id);
+                    CargarMarcas();
+                    MessageBox.Show("Marca eliminada correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No se pudo eliminar la marca. Asegúrese de que no esté asignada a ningún artículo actual. Detalle: " + ex.Message);
+                }
             }
-
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

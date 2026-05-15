@@ -122,9 +122,17 @@ namespace CatalogoArticulos
 
             if (confirm == DialogResult.Yes)
             {
-                var negocio = new CategoriaNegocio();
-                negocio.Eliminar(seleccionada.Id);
-                CargarCategorias();
+                try
+                {
+                    var negocio = new CategoriaNegocio();
+                    negocio.Eliminar(seleccionada.Id);
+                    CargarCategorias();
+                    MessageBox.Show("Categoría eliminada correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No se pudo eliminar la categoría. Asegúrese de que no esté asignada a ningún artículo actual. Error: " + ex.Message);
+                }
             }
         }
 

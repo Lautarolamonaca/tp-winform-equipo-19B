@@ -83,31 +83,38 @@ namespace CatalogoArticulos
             if (!Validar())
                 return;
 
-            ArticuloNegocio negocio = new ArticuloNegocio();
-
-            if (articulo == null)
-                articulo = new Articulo();
-
-            articulo.Codigo = txtCodigo.Text;
-            articulo.Nombre = txtNombre.Text;
-            articulo.Descripcion = txtDescripcion.Text;
-            articulo.Precio = decimal.Parse(txtPrecio.Text);
-
-            articulo.Marca = (Marca)cboMarca.SelectedItem;
-            articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
-
-            if (articulo.Id == 0)
+            try
             {
-                articulo.Id = negocio.Agregar(articulo); 
+
+                ArticuloNegocio negocio = new ArticuloNegocio();
+
+                if (articulo == null)
+                    articulo = new Articulo();
+
+                articulo.Codigo = txtCodigo.Text;
+                articulo.Nombre = txtNombre.Text;
+                articulo.Descripcion = txtDescripcion.Text;
+                articulo.Precio = decimal.Parse(txtPrecio.Text);
+
+                articulo.Marca = (Marca)cboMarca.SelectedItem;
+                articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
+
+                if (articulo.Id == 0)
+                {
+                    articulo.Id = negocio.Agregar(articulo);
+                }
+                else
+                {
+                    negocio.Modificar(articulo);
+                }
+
+                MessageBox.Show("Artículo guardado correctamente.");
             }
-            else
+
+            catch (Exception ex)
             {
-                negocio.Modificar(articulo);
+                MessageBox.Show("No se pudo guardar el artículo. Verifique que los datos sean correctos (ej: que el código no esté repetido) o que la base de datos esté activa. Error: " + ex.Message);
             }
-
-            MessageBox.Show("Artículo guardado correctamente.");
-    
-
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -156,7 +163,7 @@ namespace CatalogoArticulos
 
         private void btnImagenes_Click(object sender, EventArgs e)
         {
-
+       
 
 
             if (articulo == null || articulo.Id == 0)

@@ -79,15 +79,21 @@ namespace CatalogoArticulos
 
             Imagen img = new Imagen();
             img.ImagenUrl = txtUrl.Text;
-            img.IdArticulo = idArticulo;   
+            img.IdArticulo = idArticulo;
 
-            ImagenNegocio negocio = new ImagenNegocio();
-            negocio.Agregar(img);
+            try
+            {
+                ImagenNegocio negocio = new ImagenNegocio();
+                negocio.Agregar(img);
 
-            txtUrl.Clear();
-            CargarImagenes();
-
-
+                txtUrl.Clear();
+                CargarImagenes();
+                MessageBox.Show("Imagen agregada correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo guardar la imagen. Asegúrese de que la base de datos esté activa. Error: " + ex.Message);
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -98,12 +104,20 @@ namespace CatalogoArticulos
 
             Imagen seleccionada = (Imagen)lstImagenes.SelectedItem;
 
-            ImagenNegocio negocio = new ImagenNegocio();
-            negocio.Eliminar(seleccionada.Id);
-            ActualizarTotal();
+            try
+            {
 
-            CargarImagenes();
+                ImagenNegocio negocio = new ImagenNegocio();
+                negocio.Eliminar(seleccionada.Id);
+                ActualizarTotal();
 
+                CargarImagenes();
+                MessageBox.Show("Imagen eliminada correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo eliminar la imagen seleccionada. Error: " + ex.Message);
+            }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

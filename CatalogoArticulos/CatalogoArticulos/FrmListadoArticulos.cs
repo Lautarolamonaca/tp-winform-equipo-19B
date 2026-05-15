@@ -186,36 +186,42 @@ namespace CatalogoArticulos
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
-            Articulo seleccionado = ObtenerSeleccionado();
-            if (seleccionado == null)
-                return;
-
-            DialogResult confirm = MessageBox.Show(
-                $"¿Desea eliminar el artículo '{seleccionado.Nombre}'?\n" +
-                "También se eliminarán sus imágenes asociadas.",
-                "Confirmar eliminación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (confirm == DialogResult.Yes)
+            try
             {
-                ImagenNegocio imagenNegocio = new ImagenNegocio();
-                ArticuloNegocio articuloNegocio = new ArticuloNegocio();
 
-                // 1️⃣ eliminar imágenes
-                imagenNegocio.EliminarPorArticulo(seleccionado.Id);
+                Articulo seleccionado = ObtenerSeleccionado();
+                if (seleccionado == null)
+                    return;
 
-                // 2️⃣ eliminar artículo
-                articuloNegocio.Eliminar(seleccionado.Id);
+                DialogResult confirm = MessageBox.Show(
+                    $"¿Desea eliminar el artículo '{seleccionado.Nombre}'?\n" +
+                    "También se eliminarán sus imágenes asociadas.",
+                    "Confirmar eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
 
-                // 3️⃣ refrescar listado
-                CargarArticulos();
+                if (confirm == DialogResult.Yes)
+                {
+                    ImagenNegocio imagenNegocio = new ImagenNegocio();
+                    ArticuloNegocio articuloNegocio = new ArticuloNegocio();
 
-                // 4️⃣ limpiar PictureBox (si lo usás)
-                pbImagenArticulo.Image = null;
+                    // 1️⃣ eliminar imágenes
+                    imagenNegocio.EliminarPorArticulo(seleccionado.Id);
+
+                    // 2️⃣ eliminar artículo
+                    articuloNegocio.Eliminar(seleccionado.Id);
+
+                    // 3️⃣ refrescar listado
+                    CargarArticulos();
+
+                    // 4️⃣ limpiar PictureBox (si lo usás)
+                    pbImagenArticulo.Image = null;
+                }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo eliminar el artículo. Error: " + ex.Message);
+            }
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
