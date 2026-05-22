@@ -124,6 +124,7 @@ namespace CatalogoArticulos
                 return;
 
             Imagen img = (Imagen)lstImagenes.SelectedItem;
+            txtUrl.Text = img.ImagenUrl;
 
             // Validar URL
             if (string.IsNullOrWhiteSpace(img.ImagenUrl))
@@ -148,6 +149,42 @@ namespace CatalogoArticulos
         private void lblArticulo_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (lstImagenes.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, seleccione una imagen de la lista.");
+                return;
+            }
+
+            try
+            {
+                // Obtenemos la imagen de la lista
+                Imagen seleccionada = (Imagen)lstImagenes.SelectedItem;
+
+                // Le pasamos el nuevo texto del cuadro de texto
+                seleccionada.ImagenUrl = txtUrl.Text;
+
+                // Guardamos en DB
+                ImagenNegocio negocio = new ImagenNegocio();
+                negocio.Modificar(seleccionada);
+
+                CargarImagenes();
+                txtUrl.Clear();
+                MessageBox.Show("Imagen modificada correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al intentar modificar: " + ex.Message);
+            }
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Cambios guardados con éxito.");
+            this.Close();
         }
     }
 }
