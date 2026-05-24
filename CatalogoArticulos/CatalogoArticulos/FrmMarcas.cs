@@ -113,10 +113,25 @@ namespace CatalogoArticulos
 
             if (r == DialogResult.Yes)
             {
-                var negocio = new MarcaNegocio();
-                negocio.Eliminar(eliminar.Id);
-                CargarMarcas();
+                try
+                {
+                    var negocio = new MarcaNegocio();
+                    negocio.Eliminar(eliminar.Id);
+
+                    MessageBox.Show("Marca eliminada correctamente");
+                    CargarMarcas();
+                }
+                catch (Exception ex)
+                {
+                   
+                    MessageBox.Show(
+                        ex.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
             }
+
 
         }
 

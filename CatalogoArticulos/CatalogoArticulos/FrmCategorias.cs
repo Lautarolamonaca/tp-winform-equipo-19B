@@ -34,12 +34,10 @@ namespace CatalogoArticulos
 
             var negocio = new CategoriaNegocio();
             listarCategoria = negocio.Listar();
-
             lstCategorias.DataSource = null;
             lstCategorias.DataSource = listarCategoria;
-
             if (lstCategorias.Items.Count > 0)
-                lstCategorias.SelectedIndex = 0;
+            lstCategorias.SelectedIndex = 0;
 
         }
 
@@ -92,7 +90,6 @@ namespace CatalogoArticulos
 
             var nueva = new Categoria();
             nueva.Descripcion = txtDescripcion.Text.Trim();
-
             var negocio = new CategoriaNegocio();
             negocio.Agregar(nueva);
 
@@ -107,24 +104,40 @@ namespace CatalogoArticulos
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            var seleccionada = (Categoria)lstCategorias.SelectedItem;
-            if (seleccionada == null)
+            try
             {
-                MessageBox.Show("Seleccione una categoría.");
-                return;
+                var seleccionada = (Categoria)lstCategorias.SelectedItem;
+
+                if (seleccionada == null)
+                {
+                    MessageBox.Show("Seleccione una categoría.");
+                    return;
+                }
+
+                DialogResult confirm = MessageBox.Show(
+                    $"¿Eliminar la categoría '{seleccionada.Descripcion}'?",
+                    "Confirmar",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    var negocio = new CategoriaNegocio();
+                    negocio.Eliminar(seleccionada.Id);
+
+                    MessageBox.Show("Categoría eliminada correctamente");
+
+                    CargarCategorias();
+                }
             }
-
-            DialogResult confirm = MessageBox.Show(
-                $"¿Eliminar la categoría '{seleccionada.Descripcion}'?",
-                "Confirmar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (confirm == DialogResult.Yes)
+            catch (Exception ex)
             {
-                var negocio = new CategoriaNegocio();
-                negocio.Eliminar(seleccionada.Id);
-                CargarCategorias();
+                MessageBox.Show(
+                    ex.Message,
+                    "No se pudo eliminar",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 

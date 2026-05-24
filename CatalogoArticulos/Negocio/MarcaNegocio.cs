@@ -88,25 +88,52 @@ namespace Negocio
             }
         }
 
-
         public void Eliminar(int id)
         {
-            var datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
+                if (MarcaEnUso(id))
+                {
+                    throw new Exception("No se puede eliminar la marca porque está en uso.");
+                }
+
                 datos.setearConsulta("DELETE FROM MARCAS WHERE Id = @id");
                 datos.agregarParametro("@id", id);
                 datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
             finally
             {
                 datos.cerrarConexion();
             }
         }
+
+
+        public bool MarcaEnUso(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM ARTICULOS WHERE IdMarca = @id");
+                datos.agregarParametro("@id", id);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    return cantidad > 0;
+                }
+
+                return false;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

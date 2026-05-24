@@ -93,20 +93,30 @@ namespace Negocio
 
             try
             {
+                // 1. Validar si la categoría está en uso
+                datos.setearConsulta("SELECT COUNT(*) FROM ARTICULOS WHERE IdCategoria = @id");
+                datos.agregarParametro("@id", id);
+
+                int cantidad = (int)datos.ejecutarAccionScalar();
+
+                if (cantidad > 0)
+                {
+                    throw new Exception("No se puede eliminar la categoría porque está en uso.");
+                }
+
+                // 2. Limpiar parámetros antes de la nueva consulta
+                datos.limpiarParametros();
+
+                // 3. Ejecutar eliminación
                 datos.setearConsulta("DELETE FROM CATEGORIAS WHERE Id = @id");
                 datos.agregarParametro("@id", id);
                 datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
             finally
             {
                 datos.cerrarConexion();
             }
         }
-
 
     }
 }

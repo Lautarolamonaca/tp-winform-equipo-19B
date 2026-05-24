@@ -74,7 +74,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(534, 48);
+            this.btnBuscar.Location = new System.Drawing.Point(534, 42);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(100, 28);
@@ -87,7 +87,7 @@
             // 
             this.dgvArticulos.AllowUserToAddRows = false;
             this.dgvArticulos.ColumnHeadersHeight = 29;
-            this.dgvArticulos.Location = new System.Drawing.Point(13, 84);
+            this.dgvArticulos.Location = new System.Drawing.Point(13, 98);
             this.dgvArticulos.Margin = new System.Windows.Forms.Padding(4);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
@@ -102,7 +102,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(752, 400);
+            this.lblTotal.Location = new System.Drawing.Point(753, 420);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(112, 16);
@@ -111,7 +111,7 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(75, 394);
+            this.btnNuevo.Location = new System.Drawing.Point(76, 414);
             this.btnNuevo.Margin = new System.Windows.Forms.Padding(4);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(100, 28);
@@ -122,7 +122,7 @@
             // 
             // btnVer
             // 
-            this.btnVer.Location = new System.Drawing.Point(247, 394);
+            this.btnVer.Location = new System.Drawing.Point(248, 414);
             this.btnVer.Margin = new System.Windows.Forms.Padding(4);
             this.btnVer.Name = "btnVer";
             this.btnVer.Size = new System.Drawing.Size(100, 28);
@@ -133,7 +133,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(416, 394);
+            this.btnEditar.Location = new System.Drawing.Point(417, 414);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(100, 28);
@@ -144,7 +144,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(590, 394);
+            this.btnEliminar.Location = new System.Drawing.Point(591, 414);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 28);
@@ -155,7 +155,7 @@
             // 
             // pbImagenArticulo
             // 
-            this.pbImagenArticulo.Location = new System.Drawing.Point(907, 84);
+            this.pbImagenArticulo.Location = new System.Drawing.Point(907, 91);
             this.pbImagenArticulo.Name = "pbImagenArticulo";
             this.pbImagenArticulo.Size = new System.Drawing.Size(327, 283);
             this.pbImagenArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

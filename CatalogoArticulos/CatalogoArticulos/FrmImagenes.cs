@@ -18,7 +18,8 @@ namespace CatalogoArticulos
 
         private int idArticulo ;
         private List<Imagen> listaImagenes= new List<Imagen>();
-       
+        public bool ModoEditar = false;
+        private bool cargando = true;
 
 
 
@@ -42,24 +43,49 @@ namespace CatalogoArticulos
         private void FrmImagenes_Load_1(object sender, EventArgs e)
         {
             CargarImagenes();
+
+            txtUrl.Clear();
+            pictureBox1.Image = null;
+
         }
 
         private void CargarImagenes()
         {
 
-            ImagenNegocio negocio = new ImagenNegocio();
-            lstImagenes.DataSource = negocio.Listar();
-           
-            //listaImagenes = negocio.Listar();
 
-            //lstImagenes.DataSource = null;
-            //lstImagenes.DataSource = listaImagenes;
-            //lstImagenes.DisplayMember = "ImagenUrl";
-                
-            lstImagenes.DataSource = negocio.ListarPorArticulo(idArticulo);
-                    
+            ImagenNegocio negocio = new ImagenNegocio();
+
+            listaImagenes = negocio.ListarPorArticulo(idArticulo);
+
+            lstImagenes.DataSource = null;
+            lstImagenes.DataSource = listaImagenes;
+
             lblTotal.Text = $"Total: {listaImagenes.Count} imagen(es)";
-                                 
+
+            if (listaImagenes.Count > 0)
+            {
+                try
+                {
+                    pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBox1.LoadAsync(listaImagenes[0].ImagenUrl);
+                }
+                catch
+                {
+                    pictureBox1.Image = null;
+                }
+
+                // ✅ IMPORTANTE: forzar selección visible
+                lstImagenes.SelectedIndex = 0;
+                lstImagenes.Refresh(); // 🔥 esto ayuda a que el evento responda bien
+            }
+            else
+            {
+                pictureBox1.Image = null;
+            }
+
+
+
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -119,33 +145,38 @@ namespace CatalogoArticulos
         private void lstImagenes_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            if (cargando) return;
 
             if (lstImagenes.SelectedItem == null)
-                return;
-
-            Imagen img = (Imagen)lstImagenes.SelectedItem;
-            txtUrl.Text = img.ImagenUrl;
-
-            // Validar URL
-            if (string.IsNullOrWhiteSpace(img.ImagenUrl))
             {
-                pictureBox1.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJQeJyzgAzTEVqXiGe90RGBFhfp_4RcJJMQ&s");
+                pictureBox1.Image = null;
                 return;
             }
+
+            Imagen img = (Imagen)lstImagenes.SelectedItem;
 
             try
             {
-                pictureBox1.Image = null;
                 pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox1.Load(img.ImagenUrl); // UNA sola carga
+
+          
+                pictureBox1.ImageLocation = null;
+                pictureBox1.Image = null;
+
+                pictureBox1.ImageLocation = img.ImagenUrl;
             }
             catch
             {
-                pictureBox1.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJQeJyzgAzTEVqXiGe90RGBFhfp_4RcJJMQ&s");
-
-
+                pictureBox1.Image = null;
             }
-        }  
+
+            if (ModoEditar)
+            {
+                txtUrl.Text = img.ImagenUrl;
+            }
+
+
+        }
         private void lblArticulo_Click(object sender, EventArgs e)
         {
 
@@ -183,8 +214,38 @@ namespace CatalogoArticulos
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Cambios guardados con éxito.");
+            MessageBox.Show("Imagen guardados con éxito.");
             this.Close();
+        }
+
+        private void lstImagenes_Click(object sender, EventArgs e)
+        {
+
+            if (lstImagenes.SelectedItem == null)
+                return;
+
+            Imagen img = (Imagen)lstImagenes.SelectedItem;
+
+            try
+            {
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+          
+                pictureBox1.ImageLocation = null;
+                pictureBox1.Image = null;
+
+                pictureBox1.ImageLocation = img.ImagenUrl;
+            }
+            catch
+            {
+                pictureBox1.Image = null;
+            }
+
+            if (ModoEditar)
+            {
+                txtUrl.Text = img.ImagenUrl;
+            }
+
         }
     }
 }

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Dominio;
-using Negocio;
+using System.Drawing;
 
 namespace CatalogoArticulos
 {
@@ -42,6 +44,16 @@ namespace CatalogoArticulos
             cboCriterio.Items.Add("Nombre");
             cboCriterio.Items.Add("Marca");
             cboCriterio.Items.Add("Categoría");
+
+
+            EstiloBoton(btnNuevo);
+            EstiloBoton(btnEditar);
+            EstiloBoton(btnEliminar);
+            EstiloBoton(btnBuscar);
+            EstiloBoton(btnVer);
+            this.BackColor = Color.FromArgb(250, 250, 250);
+
+
 
 
         }
@@ -158,11 +170,14 @@ namespace CatalogoArticulos
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             FrmArticulo frm = new FrmArticulo();
+            frm.esEdicion = false;
             frm.ShowDialog();
             CargarArticulos();
+
+
         }
 
- 
+
         private void btnVer_Click(object sender, EventArgs e)
         {
             Articulo seleccionado = ObtenerSeleccionado();
@@ -179,6 +194,7 @@ namespace CatalogoArticulos
             if (seleccionado == null) return;
 
             FrmArticulo frm = new FrmArticulo(seleccionado);
+            frm.esEdicion = true;
             frm.ShowDialog();
             CargarArticulos();
         }
@@ -203,16 +219,16 @@ namespace CatalogoArticulos
                 ImagenNegocio imagenNegocio = new ImagenNegocio();
                 ArticuloNegocio articuloNegocio = new ArticuloNegocio();
 
-                // 1️⃣ eliminar imágenes
+         
                 imagenNegocio.EliminarPorArticulo(seleccionado.Id);
 
-                // 2️⃣ eliminar artículo
+       
                 articuloNegocio.Eliminar(seleccionado.Id);
 
-                // 3️⃣ refrescar listado
+         
                 CargarArticulos();
 
-                // 4️⃣ limpiar PictureBox (si lo usás)
+            
                 pbImagenArticulo.Image = null;
             }
 
@@ -228,5 +244,34 @@ namespace CatalogoArticulos
             CargarImagen(seleccionado);
 
         }
+
+        private void EstiloBoton(Button btn)
+        {
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+
+            btn.BackColor = Color.FromArgb(0, 120, 215); // azul moderno
+            btn.ForeColor = Color.White;
+
+            btn.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+
+            btn.TextAlign = ContentAlignment.MiddleCenter; // ✅ centrar texto
+            btn.Height = 40; // ✅ altura para que no quede apretado
+            btn.Width = 110; // opcional pero mejora proporción
+
+            btn.Cursor = Cursors.Hand;
+
+            // ✅ efecto hover (queda más moderno)
+            btn.MouseEnter += (s, e) =>
+            {
+                btn.BackColor = Color.FromArgb(28, 151, 234);
+            };
+
+            btn.MouseLeave += (s, e) =>
+            {
+                btn.BackColor = Color.FromArgb(0, 120, 215);
+            };
+        }
+
     }
 }

@@ -14,8 +14,8 @@ namespace CatalogoArticulos
     public partial class FrmArticulo : Form
     {
         private Articulo articulo;
-        
 
+        public bool esEdicion = false;
         public FrmArticulo()
         {
             InitializeComponent();
@@ -151,7 +151,6 @@ namespace CatalogoArticulos
         {
 
 
-
             if (articulo == null || articulo.Id == 0)
             {
                 MessageBox.Show("Primero debe guardar el artículo para poder agregar imágenes.");
@@ -159,8 +158,10 @@ namespace CatalogoArticulos
             }
 
             FrmImagenes frm = new FrmImagenes(articulo.Id);
+
+            frm.ModoEditar = true; 
+
             frm.ShowDialog();
-            LimpiarFormulario();
 
         }
 

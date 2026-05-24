@@ -39,78 +39,90 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblArticulo
             // 
             this.lblArticulo.AutoSize = true;
-            this.lblArticulo.Location = new System.Drawing.Point(120, 19);
+            this.lblArticulo.Location = new System.Drawing.Point(72, 28);
+            this.lblArticulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblArticulo.Name = "lblArticulo";
-            this.lblArticulo.Size = new System.Drawing.Size(106, 13);
+            this.lblArticulo.Size = new System.Drawing.Size(54, 16);
             this.lblArticulo.TabIndex = 0;
-            this.lblArticulo.Text = "IMAGEN ARTICULO";
+            this.lblArticulo.Text = "Artículo:";
             this.lblArticulo.Click += new System.EventHandler(this.lblArticulo_Click);
             // 
             // lstImagenes
             // 
             this.lstImagenes.FormattingEnabled = true;
-            this.lstImagenes.Location = new System.Drawing.Point(78, 48);
+            this.lstImagenes.ItemHeight = 16;
+            this.lstImagenes.Location = new System.Drawing.Point(70, 49);
+            this.lstImagenes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstImagenes.Name = "lstImagenes";
-            this.lstImagenes.Size = new System.Drawing.Size(120, 95);
+            this.lstImagenes.Size = new System.Drawing.Size(219, 132);
             this.lstImagenes.TabIndex = 1;
+            this.lstImagenes.Click += new System.EventHandler(this.lstImagenes_Click);
             this.lstImagenes.SelectedIndexChanged += new System.EventHandler(this.lstImagenes_SelectedIndexChanged);
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(87, 154);
+            this.lblTotal.Location = new System.Drawing.Point(67, 188);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(97, 13);
+            this.lblTotal.Size = new System.Drawing.Size(122, 16);
             this.lblTotal.TabIndex = 2;
             this.lblTotal.Text = "Total: 0 imagen(es)";
             // 
             // lblUrl
             // 
             this.lblUrl.AutoSize = true;
-            this.lblUrl.Location = new System.Drawing.Point(12, 192);
+            this.lblUrl.Location = new System.Drawing.Point(70, 239);
+            this.lblUrl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUrl.Name = "lblUrl";
-            this.lblUrl.Size = new System.Drawing.Size(84, 13);
+            this.lblUrl.Size = new System.Drawing.Size(104, 16);
             this.lblUrl.TabIndex = 3;
             this.lblUrl.Text = "URL de imagen:";
             // 
             // txtUrl
             // 
-            this.txtUrl.Location = new System.Drawing.Point(98, 189);
+            this.txtUrl.Location = new System.Drawing.Point(68, 260);
+            this.txtUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(100, 20);
+            this.txtUrl.Size = new System.Drawing.Size(355, 22);
             this.txtUrl.TabIndex = 4;
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(204, 189);
+            this.btnAgregar.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnAgregar.Location = new System.Drawing.Point(433, 257);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.Size = new System.Drawing.Size(100, 28);
             this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(78, 235);
+            this.btnEliminar.Location = new System.Drawing.Point(314, 356);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(144, 23);
+            this.btnEliminar.Size = new System.Drawing.Size(111, 28);
             this.btnEliminar.TabIndex = 6;
-            this.btnEliminar.Text = "Eliminar Seleccionada";
+            this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(109, 264);
+            this.btnCerrar.Location = new System.Drawing.Point(433, 356);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(75, 23);
+            this.btnCerrar.Size = new System.Drawing.Size(100, 28);
             this.btnCerrar.TabIndex = 7;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
@@ -118,18 +130,19 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(215, 48);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(314, 49);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(133, 100);
+            this.pictureBox1.Size = new System.Drawing.Size(217, 133);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(285, 189);
+            this.btnModificar.Location = new System.Drawing.Point(189, 356);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(75, 23);
+            this.btnModificar.Size = new System.Drawing.Size(100, 28);
             this.btnModificar.TabIndex = 9;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
@@ -137,19 +150,29 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(366, 189);
+            this.btnAceptar.Location = new System.Drawing.Point(70, 356);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.Size = new System.Drawing.Size(100, 28);
             this.btnAceptar.TabIndex = 10;
-            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.Text = "Guardar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(18, 322);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(571, 10);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            // 
             // FrmImagenes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 332);
+            this.ClientSize = new System.Drawing.Size(601, 453);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.pictureBox1);
@@ -161,6 +184,7 @@
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lstImagenes);
             this.Controls.Add(this.lblArticulo);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "FrmImagenes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -185,5 +209,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
